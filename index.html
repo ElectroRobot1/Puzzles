@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puzzle USB Arcade</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="masthead card">
+      <div>
+        <p class="eyebrow">Offline Puzzle Collection</p>
+        <h1>Puzzle USB Arcade</h1>
+        <p class="lead">
+          A self-contained set of browser games inspired by daily puzzle apps and classic mini-games.
+          No installs, no accounts, no internet required.
+        </p>
+      </div>
+      <div class="hero-side">
+        <div class="hero-notes">
+          <div class="stat-chip">
+            <strong>18</strong>
+            <span>games</span>
+          </div>
+          <div class="stat-chip">
+            <strong>100%</strong>
+            <span>offline</span>
+          </div>
+          <div class="stat-chip">
+            <strong>JSON</strong>
+            <span>customizable</span>
+          </div>
+        </div>
+        <button id="customizer-toggle" type="button" class="secondary-button">Open Customizer</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="card game-nav-card">
+        <div class="section-head">
+          <h2>Games</h2>
+          <p>Choose a mode.</p>
+        </div>
+        <div id="game-nav" class="game-nav" aria-label="Game list"></div>
+      </aside>
+
+      <main class="workspace">
+        <section class="card stage-card">
+          <div class="stage-head">
+            <div>
+              <p id="game-tag" class="eyebrow"></p>
+              <h2 id="game-title"></h2>
+              <p id="game-description" class="stage-description"></p>
+            </div>
+            <div class="stage-actions">
+              <button id="new-game-button" type="button">New Round</button>
+              <button id="check-game-button" type="button">Check</button>
+            </div>
+          </div>
+          <div id="game-tools" class="game-tools"></div>
+          <div id="game-area" class="game-area"></div>
+          <div id="game-message" class="game-message" aria-live="polite"></div>
+        </section>
+
+        <section class="card custom-card">
+          <div class="section-head custom-head">
+            <div>
+              <h2>Customizer</h2>
+              <p>Edit the built-in data and save it locally in this browser.</p>
+            </div>
+            <button id="close-customizer" type="button" class="secondary-button">Close</button>
+          </div>
+          <div class="custom-notes">
+            <span>Word lists</span>
+            <span>Category packs</span>
+            <span>Nonogram grids</span>
+            <span>Clue rounds</span>
+            <span>Arcade settings</span>
+          </div>
+          <textarea id="custom-data-editor" spellcheck="false" aria-label="Custom data JSON"></textarea>
+          <div class="custom-actions">
+            <button id="save-custom-data" type="button">Save Custom Data</button>
+            <button id="reset-custom-data" type="button" class="secondary-button">Reset Defaults</button>
+            <button id="export-custom-data" type="button" class="secondary-button">Export JSON</button>
+          </div>
+          <div id="custom-data-status" class="custom-status" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="wordguess-result-modal" class="modal-backdrop hidden" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="wordguess-result-title">
+      <button id="wordguess-close-modal" type="button" class="modal-close-button" aria-label="Close result summary">X</button>
+      <p class="eyebrow">Round Complete</p>
+      <h2 id="wordguess-result-title">Wordle Summary</h2>
+      <div id="wordguess-result-body" class="modal-body"></div>
+      <div class="modal-actions">
+        <button id="wordguess-play-again" type="button">Play Again</button>
+        <button id="wordguess-choose-game" type="button" class="secondary-button">Choose a Different Game</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="wordle-lists.js"></script>
+  <script src="imposter-words.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
