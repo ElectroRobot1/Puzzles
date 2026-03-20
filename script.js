@@ -93,7 +93,30 @@ const DEFAULT_CUSTOM_DATA = {
       { answer: 'ANCHOR', clues: ['Used on water', 'Heavy metal tool', 'Keeps a vessel in place', 'Shown on many nautical flags'] },
       { answer: 'ORCHESTRA', clues: ['A performance group', 'Includes strings', 'Has a conductor', 'Usually found in a concert hall'] },
       { answer: 'KEYBOARD', clues: ['A tool for input', 'Found on laptops', 'Also belongs on a piano', 'QWERTY is a common layout'] },
-      { answer: 'GLACIER', clues: ['A frozen mass', 'Moves slowly', 'Found in polar or alpine regions', 'Can carve valleys over time'] }
+      { answer: 'GLACIER', clues: ['A frozen mass', 'Moves slowly', 'Found in polar or alpine regions', 'Can carve valleys over time'] },
+      { answer: 'LIBRARY', clues: ['A public place', 'Often quiet', 'Stores many stories', 'People borrow from it'] },
+      { answer: 'COMPASS', clues: ['A tool', 'Used for direction', 'Points north', 'Helpful on a hike'] },
+      { answer: 'LANTERN', clues: ['A light source', 'Portable', 'Common on camping trips', 'Often carried by a handle'] },
+      { answer: 'PYRAMID', clues: ['A shape', 'Ancient structure', 'Seen in Egypt', 'Wide base with a point at the top'] },
+      { answer: 'TELESCOPE', clues: ['A viewing tool', 'Used at night', 'Makes far things look closer', 'Good for stargazing'] },
+      { answer: 'CANYON', clues: ['A natural feature', 'Very large crack in the earth', 'Often carved by water', 'The Grand one is famous'] },
+      { answer: 'SUBMARINE', clues: ['A vehicle', 'Travels where cars cannot', 'Moves underwater', 'Used by navies and explorers'] },
+      { answer: 'SATELLITE', clues: ['Found above Earth', 'Moves in orbit', 'Used for signals and maps', 'Can be natural or man-made'] },
+      { answer: 'CHOCOLATE', clues: ['A treat', 'Can be dark or milk', 'Often given on holidays', 'Made from cacao'] },
+      { answer: 'TORNADO', clues: ['A weather event', 'Spins fast', 'Forms a funnel', 'Can be very destructive'] },
+      { answer: 'WATERFALL', clues: ['A nature sight', 'Has a big drop', 'Made of moving water', 'Niagara is a famous one'] },
+      { answer: 'DINOSAUR', clues: ['A living thing from long ago', 'Studied in fossils', 'Some were enormous', 'Not alive today except through birds'] },
+      { answer: 'TREASURE', clues: ['Something valuable', 'Often hidden in stories', 'Can be buried', 'Pirates are linked to it'] },
+      { answer: 'AVALANCHE', clues: ['A natural event', 'Comes down a mountain', 'Made of snow', 'Can bury everything below'] },
+      { answer: 'NOTEBOOK', clues: ['A school supply', 'Has pages', 'Used for writing', 'Often carried in a backpack'] },
+      { answer: 'SPHINX', clues: ['A statue', 'Ancient', 'Associated with Egypt', 'Has a human head and lion body'] },
+      { answer: 'RAINBOW', clues: ['Seen in the sky', 'Has many colors', 'Needs light and water', 'Appears after some storms'] },
+      { answer: 'HONEYCOMB', clues: ['A pattern', 'Has six sides', 'Built by bees', 'Stores something sweet'] },
+      { answer: 'MICROSCOPE', clues: ['A lab tool', 'Used by scientists', 'Makes tiny things look larger', 'Good for viewing cells'] },
+      { answer: 'TRIANGLE', clues: ['A shape', 'Has three sides', 'Used in music too', 'One of the simplest polygons'] },
+      { answer: 'AIRPORT', clues: ['A travel hub', 'Planes use it', 'Has gates and terminals', 'Security lines are common here'] },
+      { answer: 'VOLLEYBALL', clues: ['A sport', 'Played over a net', 'Often seen on beaches', 'Players bump, set, and spike'] },
+      { answer: 'CHECKERBOARD', clues: ['A pattern', 'Alternating colors', 'Used in a game', 'Often black and red or black and white'] }
     ]
   },
   queens: {
@@ -229,6 +252,7 @@ const refs = {
   gameNavCard: document.querySelector('.game-nav-card'),
   customCard: document.querySelector('.custom-card'),
   stageActions: document.querySelector('.stage-actions'),
+  homeTitleButton: document.getElementById('home-title-button'),
   customizerToggle: document.getElementById('customizer-toggle'),
   closeCustomizer: document.getElementById('close-customizer'),
   gameNav: document.getElementById('game-nav'),
@@ -269,7 +293,8 @@ const app = {
     blockBreakerTimer: null,
     baseballTimer: null,
     sudokuCompareTimer: null,
-    queensCompareTimer: null
+    queensCompareTimer: null,
+    dictionaryWordSet: null
   }
 };
 
@@ -322,7 +347,25 @@ const SPELLING_BEE_PACKS = [
     words: ['DIRT', 'DRILL', 'LIMIT', 'LIMITER', 'LINER', 'MILD', 'MINT', 'TIDIER', 'TIMID', 'TINIER', 'TRIM', 'TRIMMER']
   }
 ];
-const MEMORY_SYMBOLS = ['SUN', 'MOON', 'STAR', 'WAVE', 'TREE', 'BOLT', 'FISH', 'NOTE'];
+const MEMORY_ITEMS = [
+  { id: 'sun', label: 'Sun', icon: 'sun' },
+  { id: 'moon', label: 'Moon', icon: 'moon' },
+  { id: 'star', label: 'Star', icon: 'star' },
+  { id: 'wave', label: 'Wave', icon: 'wave' },
+  { id: 'tree', label: 'Tree', icon: 'tree' },
+  { id: 'bolt', label: 'Bolt', icon: 'bolt' },
+  { id: 'fish', label: 'Fish', icon: 'fish' },
+  { id: 'note', label: 'Note', icon: 'note' },
+  { id: 'leaf', label: 'Leaf', icon: 'leaf' },
+  { id: 'planet', label: 'Planet', icon: 'planet' },
+  { id: 'cloud', label: 'Cloud', icon: 'cloud' },
+  { id: 'shell', label: 'Shell', icon: 'shell' }
+];
+const MEMORY_DIFFICULTIES = {
+  easy: { label: 'Easy', pairs: 4, columns: 4 },
+  medium: { label: 'Medium', pairs: 8, columns: 4 },
+  hard: { label: 'Hard', pairs: 12, columns: 6 }
+};
 const BLANK_SLATE_WORDS = [
   'street', 'dog', 'school', 'star', 'book', 'game', 'house', 'car', 'cat', 'tree',
   'fire', 'shoe', 'phone', 'light', 'water', 'dance', 'music', 'party', 'fish', 'cake',
@@ -335,6 +378,8 @@ const CARD_SUITS = [
   { id: 'clubs', symbol: 'C', color: 'black' },
   { id: 'spades', symbol: 'S', color: 'black' }
 ];
+const SOLITAIRE_CARD_IMAGE_ROOT = 'PNG-cards';
+const SOLITAIRE_CARD_BACK_IMAGE = `${SOLITAIRE_CARD_IMAGE_ROOT}/back-of-card.png`;
 
 function deepClone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -437,6 +482,21 @@ function getWordleAcceptedGuessList() {
   ])];
 }
 
+function getDictionaryWordList() {
+  return Array.isArray(window.PUZZLE_USB_DICTIONARY_WORDS) ? window.PUZZLE_USB_DICTIONARY_WORDS : [];
+}
+
+function getDictionaryWordSet() {
+  if (!app.runtime.dictionaryWordSet) {
+    app.runtime.dictionaryWordSet = new Set(
+      getDictionaryWordList()
+        .map(word => String(word || '').trim().toLowerCase())
+        .filter(word => word.length > 2)
+    );
+  }
+  return app.runtime.dictionaryWordSet;
+}
+
 function getGroupPacks() {
   const source = Array.isArray(app.customData.groupSort?.packs)
     ? app.customData.groupSort.packs
@@ -473,14 +533,17 @@ function getNonogramPuzzles() {
 
 function getPinpointPacks() {
   const source = Array.isArray(app.customData.pinpoint?.packs)
-    ? app.customData.pinpoint.packs
+    ? app.customData.pinpoint.packs.concat(DEFAULT_CUSTOM_DATA.pinpoint.packs)
     : DEFAULT_CUSTOM_DATA.pinpoint.packs;
+  const seenAnswers = new Set();
   const packs = source.map(pack => {
     const clues = Array.isArray(pack?.clues)
       ? pack.clues.map(clue => String(clue || '').trim()).filter(Boolean)
       : [];
     const answer = String(pack?.answer || '').trim().toUpperCase();
     if (!answer || clues.length < 2) return null;
+    if (seenAnswers.has(answer)) return null;
+    seenAnswers.add(answer);
     return { answer, clues };
   }).filter(Boolean);
   return packs.length ? packs : deepClone(DEFAULT_CUSTOM_DATA.pinpoint.packs);
@@ -1417,14 +1480,17 @@ function createMinesweeperState() {
 function buildDeck() {
   let nextId = 1;
   const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-  return shuffle(CARD_SUITS.flatMap(suit => ranks.map((label, index) => ({
+  const deck = CARD_SUITS.flatMap(suit => ranks.map((label, index) => ({
     id: `card-${nextId++}`,
     suit: suit.id,
     suitLabel: suit.symbol,
     color: suit.color,
     rank: index + 1,
     label
-  }))));
+  })));
+  const uniqueCards = new Set(deck.map(card => `${card.suit}-${card.rank}`));
+  if (deck.length !== 52 || uniqueCards.size !== 52) throw new Error('Invalid solitaire deck.');
+  return shuffle(deck);
 }
 
 function createSolitaireState() {
@@ -1440,16 +1506,22 @@ function createSolitaireState() {
     tableau,
     stock: deck.map(card => ({ ...card, faceUp: false })),
     waste: [],
-    foundations: { hearts: [], diamonds: [], clubs: [], spades: [] },
+    foundations: Array.from({ length: 4 }, () => []),
     selected: null,
-    won: false
+    won: false,
+    moves: 0,
+    history: []
   };
 }
 
-function createMemoryState() {
-  const cards = shuffle(MEMORY_SYMBOLS.flatMap(symbol => [{ symbol, id: `${symbol}-a` }, { symbol, id: `${symbol}-b` }]))
+function createMemoryState(difficulty = 'medium') {
+  const config = MEMORY_DIFFICULTIES[difficulty] || MEMORY_DIFFICULTIES.medium;
+  const cards = shuffle(MEMORY_ITEMS.slice(0, config.pairs)
+    .flatMap(item => [{ ...item, id: `${item.id}-a` }, { ...item, id: `${item.id}-b` }]))
     .map(card => ({ ...card, revealed: false, matched: false }));
   return {
+    difficulty,
+    columns: config.columns,
     cards,
     firstPick: null,
     secondPick: null,
@@ -2604,6 +2676,10 @@ function submitPinpointGuess() {
   const guess = String(state.current || '').trim().toUpperCase();
   if (!guess) {
     setGameMessage('Enter a guess first.', 'warning');
+    return;
+  }
+  if (!getDictionaryWordSet().has(guess.toLowerCase())) {
+    setGameMessage('That guess is not in the dictionary list.', 'warning');
     return;
   }
   state.guesses.push(guess);
@@ -3808,7 +3884,7 @@ function renderSpellingBee() {
 function submitSpellingBeeWord() {
   const state = getGameState('spellingBee');
   const guess = String(state.current || '').trim().toUpperCase();
-  const acceptedGuesses = getWordleAcceptedGuessList();
+  const dictionaryWords = getDictionaryWordSet();
   if (guess.length < 4) {
     setGameMessage('Words must be at least 4 letters long.', 'warning');
     return;
@@ -3826,15 +3902,15 @@ function submitSpellingBeeWord() {
     return;
   }
   if (!state.pack.words.includes(guess)) {
-    if (!acceptedGuesses.includes(guess)) {
-      setGameMessage('That word is not in this hive list or the accepted Wordle guesses.', 'warning');
+    if (!dictionaryWords.has(guess.toLowerCase())) {
+      setGameMessage('That word is not in this hive list or the dictionary list.', 'warning');
       return;
     }
     state.bonusFound.push(guess);
     state.score += getSpellingBeePoints(state, guess, true);
     state.current = '';
     renderActiveGame();
-    setGameMessage('Accepted as a bonus Wordle-list word.', 'success');
+    setGameMessage('Accepted as a bonus dictionary word.', 'success');
     return;
   }
   state.found.push(guess);
@@ -4135,24 +4211,127 @@ function getSolitaireCardLabel(card) {
   return `${card.label}${card.suitLabel}`;
 }
 
+function getSolitaireCardImage(card, faceUp = card?.faceUp) {
+  if (!card || !faceUp) return SOLITAIRE_CARD_BACK_IMAGE;
+  const rankMap = { A: 'ace', J: 'jack', Q: 'queen', K: 'king' };
+  const rankName = rankMap[card.label] || String(card.label).toLowerCase();
+  return `${SOLITAIRE_CARD_IMAGE_ROOT}/${rankName}_of_${card.suit}.png`;
+}
+
+function renderSolitaireCardImage(card, faceUp = card?.faceUp) {
+  const label = card ? getSolitaireCardLabel(card) : 'Card';
+  return `<img class="solitaire-card-image" src="${getSolitaireCardImage(card, faceUp)}" alt="${faceUp ? label : 'Face-down card'}">`;
+}
+
+function getMemoryIconSvg(icon) {
+  const common = 'stroke-linecap="round" stroke-linejoin="round"';
+  switch (icon) {
+    case 'sun':
+      return `<circle cx="50" cy="50" r="16" fill="#f4b942"/><g stroke="#f4b942" stroke-width="6" ${common}><line x1="50" y1="10" x2="50" y2="24"/><line x1="50" y1="76" x2="50" y2="90"/><line x1="10" y1="50" x2="24" y2="50"/><line x1="76" y1="50" x2="90" y2="50"/><line x1="22" y1="22" x2="31" y2="31"/><line x1="69" y1="69" x2="78" y2="78"/><line x1="22" y1="78" x2="31" y2="69"/><line x1="69" y1="31" x2="78" y2="22"/></g>`;
+    case 'moon':
+      return `<path d="M66 18c-5 2-11 8-13 18-4 18 10 34 29 34 4 0 8-1 11-2-5 10-15 17-28 17-19 0-34-15-34-34 0-15 10-28 24-33 4-2 8-2 11 0z" fill="#8aa4ff"/>`;
+    case 'star':
+      return `<polygon points="50,12 60,38 88,38 66,54 74,82 50,65 26,82 34,54 12,38 40,38" fill="#f0c94c"/>`;
+    case 'wave':
+      return `<path d="M10 58c10 0 10-8 20-8s10 8 20 8 10-8 20-8 10 8 20 8" fill="none" stroke="#4ca6d8" stroke-width="8" ${common}/><path d="M10 74c10 0 10-8 20-8s10 8 20 8 10-8 20-8 10 8 20 8" fill="none" stroke="#4ca6d8" stroke-width="8" ${common}/>`;
+    case 'tree':
+      return `<rect x="44" y="56" width="12" height="24" rx="4" fill="#8a5a3c"/><circle cx="50" cy="34" r="22" fill="#67a95b"/><circle cx="34" cy="44" r="14" fill="#67a95b"/><circle cx="66" cy="44" r="14" fill="#67a95b"/>`;
+    case 'bolt':
+      return `<polygon points="54,10 26,54 45,54 36,90 74,42 54,42" fill="#f0c94c"/>`;
+    case 'fish':
+      return `<ellipse cx="46" cy="50" rx="24" ry="16" fill="#59b8c8"/><polygon points="68,50 88,36 88,64" fill="#59b8c8"/><circle cx="38" cy="46" r="3" fill="#163040"/>`;
+    case 'note':
+      return `<path d="M62 18v40c0 10-8 18-18 18-8 0-14-5-14-12 0-8 7-13 16-13 3 0 6 1 8 2V28l24-6v36c0 10-8 18-18 18-8 0-14-5-14-12 0-8 7-13 16-13 3 0 6 1 8 2V18z" fill="#7a68d8"/>`;
+    case 'leaf':
+      return `<path d="M78 22c-28 2-46 16-52 40-3 13 4 26 17 29 24 6 46-18 43-69-1-1-4-1-8 0z" fill="#6dad5f"/><path d="M24 72c15-14 28-24 46-34" fill="none" stroke="#3d6b33" stroke-width="5" ${common}/>`;
+    case 'planet':
+      return `<circle cx="50" cy="46" r="20" fill="#8c83ff"/><ellipse cx="50" cy="52" rx="34" ry="10" fill="none" stroke="#d1b56e" stroke-width="7"/><ellipse cx="50" cy="52" rx="34" ry="10" fill="none" stroke="#d1b56e" stroke-width="3"/>`;
+    case 'cloud':
+      return `<circle cx="38" cy="50" r="14" fill="#9cc7ef"/><circle cx="52" cy="42" r="18" fill="#9cc7ef"/><circle cx="68" cy="50" r="14" fill="#9cc7ef"/><rect x="24" y="50" width="58" height="18" rx="9" fill="#9cc7ef"/>`;
+    case 'shell':
+      return `<path d="M50 84c-18 0-30-12-30-30 0-20 14-34 30-34s30 14 30 34c0 18-12 30-30 30z" fill="#e4b48e"/><path d="M50 24v56M36 28l8 52M64 28l-8 52M24 44l24 36M76 44L52 80" stroke="#c48761" stroke-width="4" ${common}/>`;
+    default:
+      return `<circle cx="50" cy="50" r="24" fill="#4ca6d8"/>`;
+  }
+}
+
+function getMemoryCardImage(item) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="#fff6ea"/>${getMemoryIconSvg(item.icon)}</svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
+function getSolitaireCardRun(state, columnIndex, cardIndex) {
+  const column = state.tableau[columnIndex];
+  if (!column || !column[cardIndex]?.faceUp) return null;
+  const run = column.slice(cardIndex);
+  return isValidSolitaireRun(run) ? run : null;
+}
+
 function revealTopTableauCard(column) {
   const lastCard = column[column.length - 1];
   if (lastCard) lastCard.faceUp = true;
 }
 
-function popSelectedSolitaireCard(state) {
+function getSelectedSolitaireCards(state) {
   if (!state.selected) return null;
-  if (state.selected.source === 'waste') return state.waste.pop();
+  if (state.selected.source === 'waste') return state.waste.length ? [state.waste[state.waste.length - 1]] : null;
   const column = state.tableau[state.selected.index];
-  const card = column.pop();
+  return column.slice(state.selected.cardIndex);
+}
+
+function isValidSolitaireRun(cards) {
+  if (!cards?.length) return false;
+  for (let index = 0; index < cards.length - 1; index += 1) {
+    const current = cards[index];
+    const next = cards[index + 1];
+    if (current.color === next.color || current.rank !== next.rank + 1) return false;
+  }
+  return true;
+}
+
+function popSelectedSolitaireCards(state) {
+  if (!state.selected) return [];
+  if (state.selected.source === 'waste') return state.waste.length ? [state.waste.pop()] : [];
+  const column = state.tableau[state.selected.index];
+  const cards = column.splice(state.selected.cardIndex);
   revealTopTableauCard(column);
-  return card;
+  return cards;
+}
+
+function snapshotSolitaireState(state) {
+  return {
+    tableau: deepClone(state.tableau),
+    stock: deepClone(state.stock),
+    waste: deepClone(state.waste),
+    foundations: deepClone(state.foundations),
+    won: state.won
+  };
+}
+
+function pushSolitaireHistory(state) {
+  state.history.push(snapshotSolitaireState(state));
+  if (state.history.length > 100) state.history.shift();
 }
 
 function canPlaceOnSolitaireFoundation(card, foundation) {
   if (!foundation.length) return card.rank === 1;
   const top = foundation[foundation.length - 1];
   return top.suit === card.suit && top.rank + 1 === card.rank;
+}
+
+function undoSolitaireMove() {
+  const state = getGameState('solitaire');
+  const snapshot = state.history.pop();
+  if (!snapshot) return;
+  const nextMoves = state.moves + 1;
+  state.tableau = deepClone(snapshot.tableau);
+  state.stock = deepClone(snapshot.stock);
+  state.waste = deepClone(snapshot.waste);
+  state.foundations = deepClone(snapshot.foundations);
+  state.won = snapshot.won;
+  state.selected = null;
+  state.moves = nextMoves;
+  renderActiveGame();
 }
 
 function canPlaceOnSolitaireTableau(card, column) {
@@ -4168,17 +4347,19 @@ function renderSolitaire() {
     <div class="inline-tools">
       <span class="pill">Stock ${state.stock.length}</span>
       <span class="pill">Waste ${state.waste.length}</span>
-      <span class="pill">Foundations ${Object.values(state.foundations).reduce((sum, pile) => sum + pile.length, 0)}/52</span>
+      <span class="pill">Foundations ${state.foundations.reduce((sum, pile) => sum + pile.length, 0)}/52</span>
+      <span class="pill">Moves ${state.moves}</span>
+      <button type="button" class="secondary-button" id="solitaire-undo" ${state.history.length ? '' : 'disabled'}>Undo</button>
     </div>
   `;
   refs.gameArea.innerHTML = `
     <div class="solitaire-shell">
       <div class="solitaire-top">
-        <button type="button" class="solitaire-pile" id="solitaire-stock">${state.stock.length ? 'Draw' : 'Recycle'}</button>
-        <button type="button" class="solitaire-pile ${state.selected?.source === 'waste' ? 'selected' : ''}" id="solitaire-waste">${state.waste.length ? getSolitaireCardLabel(state.waste[state.waste.length - 1]) : 'Waste'}</button>
-        ${CARD_SUITS.map(suit => `
-          <button type="button" class="solitaire-pile foundation" data-foundation="${suit.id}">
-            ${state.foundations[suit.id].length ? getSolitaireCardLabel(state.foundations[suit.id][state.foundations[suit.id].length - 1]) : suit.symbol}
+        <button type="button" class="solitaire-pile" id="solitaire-stock">${state.stock.length ? renderSolitaireCardImage(state.stock[state.stock.length - 1], false) : 'Recycle'}</button>
+        <button type="button" draggable="${state.waste.length ? 'true' : 'false'}" class="solitaire-pile ${state.selected?.source === 'waste' ? 'selected' : ''}" id="solitaire-waste">${state.waste.length ? renderSolitaireCardImage(state.waste[state.waste.length - 1], true) : 'Waste'}</button>
+        ${state.foundations.map((pile, index) => `
+          <button type="button" class="solitaire-pile foundation" data-foundation="${index}">
+            ${pile.length ? renderSolitaireCardImage(pile[pile.length - 1], true) : 'Ace'}
           </button>
         `).join('')}
       </div>
@@ -4186,8 +4367,13 @@ function renderSolitaire() {
         ${state.tableau.map((column, columnIndex) => `
           <div class="solitaire-column" data-tableau-column="${columnIndex}">
             ${column.map((card, cardIndex) => `
-              <button type="button" class="solitaire-card ${card.faceUp ? `face-up ${card.color}` : 'face-down'} ${state.selected?.source === 'tableau' && state.selected.index === columnIndex ? 'selected' : ''}" data-tableau-card="${columnIndex}:${cardIndex}">
-                ${card.faceUp ? getSolitaireCardLabel(card) : ''}
+              <button
+                type="button"
+                draggable="${card.faceUp ? 'true' : 'false'}"
+                class="solitaire-card ${card.faceUp ? `face-up ${card.color}` : 'face-down'} ${state.selected?.source === 'tableau' && state.selected.index === columnIndex && cardIndex >= state.selected.cardIndex ? 'selected' : ''}"
+                data-tableau-card="${columnIndex}:${cardIndex}"
+              >
+                ${renderSolitaireCardImage(card, card.faceUp)}
               </button>
             `).join('')}
             ${!column.length ? '<button type="button" class="solitaire-card empty">Empty</button>' : ''}
@@ -4196,81 +4382,129 @@ function renderSolitaire() {
       </div>
     </div>
   `;
+  document.getElementById('solitaire-undo').addEventListener('click', undoSolitaireMove);
   document.getElementById('solitaire-stock').addEventListener('click', drawSolitaireStock);
   document.getElementById('solitaire-waste').addEventListener('click', () => {
     if (!state.waste.length) return;
     state.selected = state.selected?.source === 'waste' ? null : { source: 'waste' };
     renderActiveGame();
   });
+  document.getElementById('solitaire-waste').addEventListener('dragstart', event => {
+    if (!state.waste.length) {
+      event.preventDefault();
+      return;
+    }
+    state.selected = { source: 'waste' };
+    event.dataTransfer.setData('text/plain', 'waste');
+    event.dataTransfer.effectAllowed = 'move';
+  });
   refs.gameArea.querySelectorAll('[data-foundation]').forEach(button => {
     button.addEventListener('click', () => moveSolitaireToFoundation(button.dataset.foundation));
+    button.addEventListener('dragover', event => event.preventDefault());
+    button.addEventListener('drop', event => {
+      event.preventDefault();
+      moveSolitaireToFoundation(button.dataset.foundation);
+    });
   });
   refs.gameArea.querySelectorAll('[data-tableau-card]').forEach(button => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', event => {
+      event.stopPropagation();
       const [columnIndex, cardIndex] = button.dataset.tableauCard.split(':').map(Number);
-      const column = state.tableau[columnIndex];
-      if (cardIndex !== column.length - 1 || !column[cardIndex].faceUp) return;
+      const run = getSolitaireCardRun(state, columnIndex, cardIndex);
+      if (!run) return;
       if (!state.selected) {
-        state.selected = { source: 'tableau', index: columnIndex };
+        state.selected = { source: 'tableau', index: columnIndex, cardIndex };
+        renderActiveGame();
+        return;
+      }
+      if (state.selected.source === 'tableau' && state.selected.index === columnIndex && state.selected.cardIndex === cardIndex) {
+        state.selected = null;
         renderActiveGame();
         return;
       }
       moveSolitaireToTableau(columnIndex);
     });
+    button.addEventListener('dragstart', event => {
+      const [columnIndex, cardIndex] = button.dataset.tableauCard.split(':').map(Number);
+      const run = getSolitaireCardRun(state, columnIndex, cardIndex);
+      if (!run) {
+        event.preventDefault();
+        return;
+      }
+      state.selected = { source: 'tableau', index: columnIndex, cardIndex };
+      event.dataTransfer.setData('text/plain', `${columnIndex}:${cardIndex}`);
+      event.dataTransfer.effectAllowed = 'move';
+    });
   });
   refs.gameArea.querySelectorAll('[data-tableau-column]').forEach(button => {
     button.addEventListener('click', event => {
-      if (event.target.dataset.tableauCard) return;
+      if (event.target.closest('[data-tableau-card]')) return;
+      moveSolitaireToTableau(Number(button.dataset.tableauColumn));
+    });
+    button.addEventListener('dragover', event => event.preventDefault());
+    button.addEventListener('drop', event => {
+      event.preventDefault();
       moveSolitaireToTableau(Number(button.dataset.tableauColumn));
     });
   });
   if (state.won) setGameMessage('Table cleared.', 'success');
-  else setGameMessage('Click a card to select it, then click a destination pile.');
+  else setGameMessage('Click a card then a destination, or drag a card stack where you want it.');
 }
 
 function drawSolitaireStock() {
   const state = getGameState('solitaire');
+  pushSolitaireHistory(state);
   if (!state.stock.length) {
     state.stock = state.waste.reverse().map(card => ({ ...card, faceUp: false }));
     state.waste = [];
     state.selected = null;
+    state.moves += 1;
     renderActiveGame();
     return;
   }
   const card = state.stock.pop();
   state.waste.push({ ...card, faceUp: true });
   state.selected = null;
+  state.moves += 1;
   renderActiveGame();
 }
 
 function moveSolitaireToFoundation(foundationId) {
   const state = getGameState('solitaire');
   if (!state.selected) return;
-  const card = state.selected.source === 'waste'
-    ? state.waste[state.waste.length - 1]
-    : state.tableau[state.selected.index][state.tableau[state.selected.index].length - 1];
-  const foundation = state.foundations[foundationId];
+  const cards = getSelectedSolitaireCards(state);
+  const card = cards?.[0];
+  if (!card || cards.length !== 1) return;
+  const foundation = state.foundations[Number(foundationId)];
   if (!card || !canPlaceOnSolitaireFoundation(card, foundation)) return;
-  foundation.push(popSelectedSolitaireCard(state));
+  pushSolitaireHistory(state);
+  foundation.push(popSelectedSolitaireCards(state)[0]);
   state.selected = null;
-  state.won = Object.values(state.foundations).every(pile => pile.length === 13);
+  state.moves += 1;
+  state.won = state.foundations.every(pile => pile.length === 13);
   renderActiveGame();
 }
 
 function moveSolitaireToTableau(columnIndex) {
   const state = getGameState('solitaire');
   if (!state.selected) return;
-  const sourceCard = state.selected.source === 'waste'
-    ? state.waste[state.waste.length - 1]
-    : state.tableau[state.selected.index][state.tableau[state.selected.index].length - 1];
+  const cardsToMove = getSelectedSolitaireCards(state);
+  const sourceCard = cardsToMove?.[0];
   const column = state.tableau[columnIndex];
   if (!sourceCard || !canPlaceOnSolitaireTableau(sourceCard, column)) {
     if (state.selected.source === 'tableau' && state.selected.index === columnIndex) state.selected = null;
     renderActiveGame();
     return;
   }
-  column.push({ ...popSelectedSolitaireCard(state), faceUp: true });
+  if (state.selected.source === 'tableau' && state.selected.index === columnIndex) {
+    state.selected = null;
+    renderActiveGame();
+    return;
+  }
+  pushSolitaireHistory(state);
+  popSelectedSolitaireCards(state).forEach(card => column.push({ ...card, faceUp: true }));
   state.selected = null;
+  state.moves += 1;
   renderActiveGame();
 }
 
@@ -4278,19 +4512,30 @@ function renderMemory() {
   const state = getGameState('memory');
   refs.gameTools.innerHTML = `
     <div class="inline-tools">
+      <label class="tool-label">Difficulty
+        <select id="memory-difficulty">
+          ${Object.entries(MEMORY_DIFFICULTIES).map(([id, config]) => `<option value="${id}" ${state.difficulty === id ? 'selected' : ''}>${config.label}</option>`).join('')}
+        </select>
+      </label>
       <span class="pill">Turns ${state.turns}</span>
       <span class="pill">${state.cards.filter(card => card.matched).length / 2} pairs found</span>
     </div>
   `;
   refs.gameArea.innerHTML = `
-    <div class="memory-grid">
+    <div class="memory-grid" style="--memory-columns:${state.columns}">
       ${state.cards.map((card, index) => `
         <button type="button" class="memory-card ${card.revealed || card.matched ? 'revealed' : ''}" data-memory-card="${index}">
-          <span>${card.revealed || card.matched ? card.symbol : '?'}</span>
+          ${card.revealed || card.matched
+            ? `<img class="memory-card-image" src="${getMemoryCardImage(card)}" alt="${card.label}">`
+            : '<span class="memory-card-back">?</span>'}
         </button>
       `).join('')}
     </div>
   `;
+  document.getElementById('memory-difficulty').addEventListener('change', event => {
+    app.states.memory = createMemoryState(event.target.value);
+    renderActiveGame();
+  });
   refs.gameArea.querySelectorAll('[data-memory-card]').forEach(button => {
     button.addEventListener('click', () => revealMemoryCard(Number(button.dataset.memoryCard)));
   });
@@ -4311,7 +4556,7 @@ function revealMemoryCard(index) {
   state.turns += 1;
   const firstCard = state.cards[state.firstPick];
   const secondCard = state.cards[state.secondPick];
-  if (firstCard.symbol === secondCard.symbol) {
+  if (firstCard.id.split('-')[0] === secondCard.id.split('-')[0]) {
     firstCard.matched = true;
     secondCard.matched = true;
     state.firstPick = null;
@@ -4771,6 +5016,7 @@ function handleMergeKey(event) {
 function attachGlobalEvents() {
   refs.newGameButton.addEventListener('click', runNewAction);
   refs.checkGameButton.addEventListener('click', runCheckAction);
+  refs.homeTitleButton.addEventListener('click', showHomeView);
   refs.customizerToggle.addEventListener('click', () => toggleCustomizer());
   refs.closeCustomizer.addEventListener('click', () => toggleCustomizer(false));
   refs.wordGuessPlayAgain.addEventListener('click', () => {

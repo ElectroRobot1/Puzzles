@@ -121,6 +121,17 @@ button:disabled {
   min-width: 160px;
 }
 
+.home-title-button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
 .eyebrow {
   margin: 0 0 0.4rem;
   color: var(--accent);
@@ -1040,6 +1051,8 @@ button:disabled {
   border-radius: 18px;
   box-shadow: none;
   border: 1px solid rgba(179, 155, 132, 0.62);
+  padding: 0;
+  overflow: hidden;
 }
 
 .solitaire-pile {
@@ -1054,9 +1067,18 @@ button:disabled {
 }
 
 .solitaire-column {
-  display: grid;
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   align-content: start;
+}
+
+.solitaire-column .solitaire-card {
+  position: relative;
+}
+
+.solitaire-column .solitaire-card + .solitaire-card {
+  margin-top: -150px;
 }
 
 .solitaire-card.face-up {
@@ -1069,13 +1091,19 @@ button:disabled {
 }
 
 .solitaire-card.face-down {
-  background: linear-gradient(135deg, var(--primary), #1f737c);
+  background: #0f4c54;
   color: transparent;
 }
 
 .solitaire-card.empty {
   background: rgba(255, 248, 239, 0.4);
   color: var(--muted);
+}
+
+.solitaire-card-image {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .solitaire-card.selected,
@@ -1085,22 +1113,35 @@ button:disabled {
 
 .memory-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 110px));
+  grid-template-columns: repeat(var(--memory-columns, 4), minmax(0, 110px));
   gap: 12px;
 }
 
 .memory-card {
   min-height: 110px;
-  font-size: 1.05rem;
-  font-weight: 700;
   background: linear-gradient(135deg, var(--primary), #1f737c);
   color: #fff;
   box-shadow: none;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
 }
 
 .memory-card.revealed {
   background: #fff8ef;
   color: var(--ink);
+}
+
+.memory-card-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.memory-card-back {
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 .blank-player-list {
@@ -1409,6 +1450,10 @@ button:disabled {
   .page-shell {
     width: min(100% - 20px, 100%);
     margin-top: 10px;
+  }
+
+  .layout:not(.home-mode) .game-nav-card {
+    display: none;
   }
 
   .masthead,
