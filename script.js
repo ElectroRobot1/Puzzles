@@ -1,5 +1,6 @@
 const STORAGE_KEY = 'puzzle_usb_custom_data_v1';
 const MERGE_BEST_KEY = 'puzzle_usb_merge_best_v1';
+const HIGH_SCORE_STORAGE_KEY = 'puzzle_usb_high_scores_v1';
 
 const DEFAULT_CUSTOM_DATA = {
   wordGuess: {
@@ -78,12 +79,95 @@ const DEFAULT_CUSTOM_DATA = {
       }
     ]
   },
+  strands: {
+    boards: [
+      {
+        title: 'Camp Comforts',
+        clue: 'Things around the campsite',
+        spangram: 'CAMPINGGEAR',
+        startingBoard: [
+          'TENTLOG',
+          'MUGPITX',
+          'ROPEXXX',
+          'STOVEXX',
+          'LANTERN',
+          'CAMPING',
+          'XXXRAEG'
+        ],
+        solutions: ['TENT', 'MUG', 'PIT', 'LOG', 'ROPE', 'LANTERN', 'STOVE'],
+        themeCoords: {
+          TENT: [[0, 0], [0, 1], [0, 2], [0, 3]],
+          LOG: [[0, 4], [0, 5], [0, 6]],
+          MUG: [[1, 0], [1, 1], [1, 2]],
+          PIT: [[1, 3], [1, 4], [1, 5]],
+          ROPE: [[2, 0], [2, 1], [2, 2], [2, 3]],
+          STOVE: [[3, 0], [3, 1], [3, 2], [3, 3], [3, 4]],
+          LANTERN: [[4, 0], [4, 1], [4, 2], [4, 3], [4, 4], [4, 5], [4, 6]]
+        },
+        spangramCoords: [[5, 0], [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6], [6, 6], [6, 5], [6, 4], [6, 3]]
+      },
+      {
+        title: 'Ocean Wonders',
+        clue: 'Creatures in the sea',
+        spangram: 'SEACREATURES',
+        startingBoard: [
+          'SEALRAY',
+          'ORCAXXX',
+          'TURTLEX',
+          'CRABEEL',
+          'XXXXXXX',
+          'SEACREA',
+          'XXSERUT'
+        ],
+        solutions: ['SEAL', 'RAY', 'ORCA', 'TURTLE', 'CRAB', 'EEL'],
+        themeCoords: {
+          SEAL: [[0, 0], [0, 1], [0, 2], [0, 3]],
+          RAY: [[0, 4], [0, 5], [0, 6]],
+          ORCA: [[1, 0], [1, 1], [1, 2], [1, 3]],
+          TURTLE: [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5]],
+          CRAB: [[3, 0], [3, 1], [3, 2], [3, 3]],
+          EEL: [[3, 4], [3, 5], [3, 6]]
+        },
+        spangramCoords: [[5, 0], [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6], [6, 6], [6, 5], [6, 4], [6, 3], [6, 2]]
+      },
+      {
+        title: 'Bakery Case',
+        clue: 'Treats behind the glass',
+        spangram: 'SWEETPASTRIES',
+        startingBoard: [
+          'SCONEXX',
+          'DONUTXX',
+          'ECLAIRX',
+          'TARTXXX',
+          'COOKIEX',
+          'SWEETPA',
+          'XSEIRTS'
+        ],
+        solutions: ['SCONE', 'DONUT', 'ECLAIR', 'TART', 'COOKIE'],
+        themeCoords: {
+          SCONE: [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]],
+          DONUT: [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4]],
+          ECLAIR: [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5]],
+          TART: [[3, 0], [3, 1], [3, 2], [3, 3]],
+          COOKIE: [[4, 0], [4, 1], [4, 2], [4, 3], [4, 4], [4, 5]]
+        },
+        spangramCoords: [[5, 0], [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6], [6, 6], [6, 5], [6, 4], [6, 3], [6, 2], [6, 1]]
+      }
+    ]
+  },
   nonogram: {
     puzzles: [
       { title: 'Heart', grid: ['.XX..', 'XXXX.', 'XXXXX', '.XXX.', '..X..'] },
       { title: 'Star', grid: ['..X..', 'XXXXX', '.XXX.', 'XXXXX', '..X..'] },
       { title: 'Rocket', grid: ['..X..', '.XXX.', 'XXXXX', '.XXX.', '.X.X.', 'X...X'] },
-      { title: 'Tree', grid: ['..X..', '.XXX.', 'XXXXX', '..X..', '..X..', '.XXX.'] }
+      { title: 'Tree', grid: ['..X..', '.XXX.', 'XXXXX', '..X..', '..X..', '.XXX.'] },
+      { title: 'Crown', grid: ['X...X', 'XX.XX', 'XXXXX', '.XXX.', '.XXX.'] },
+      { title: 'Mushroom', grid: ['.XXX.', 'XXXXX', 'XXXXX', '..X..', '.XXX.'] },
+      { title: 'Duck', grid: ['.XX..', 'XXXX.', '.XXXX', '.XXX.', '..X..'] },
+      { title: 'Ice Cream', grid: ['..X..', '.XXX.', 'XXXXX', '.XXX.', '.X.X.', 'XXXXX'] },
+      { title: 'House', grid: ['..X..', '.XXX.', 'XXXXX', 'X.X.X', 'XXXXX'] },
+      { title: 'Fish', grid: ['.XX..', 'XXXXX', '.XXXX', 'XXXXX', '.XX..'] },
+      { title: 'Flower', grid: ['.X.X.', 'XXXXX', '.XXX.', '.XXX.', 'X.X.X', '.X.X.'] }
     ]
   },
   pinpoint: {
@@ -137,6 +221,7 @@ const GAME_LIST = [
   { id: 'wordGuess', label: 'Wordle', summary: 'Wordle-style five-letter guessing.', category: 'nyt' },
   { id: 'spellingBee', label: 'Spelling Bee', summary: 'Build words from a seven-letter hive.', category: 'nyt' },
   { id: 'groupSort', label: 'Connections', summary: 'Connections-style category matching.', category: 'nyt' },
+  { id: 'strands', label: 'Strands', summary: 'Find themed words in a flowing letter grid.', category: 'nyt' },
   { id: 'sudoku', label: 'Sudoku Studio', summary: 'Fill the 9x9 logic grid.', category: 'indie' },
   { id: 'nonogram', label: 'Pixel Picross', summary: 'Reveal pictures with clues.', category: 'indie' },
   { id: 'queens', label: 'Queens Board', summary: 'Place queens by row, column, and region.', category: 'indie' },
@@ -147,6 +232,7 @@ const GAME_LIST = [
   { id: 'imposter', label: 'Imposter', summary: 'Secret word handoff with one hidden imposter.', category: 'indie' },
   { id: 'minesweeper', label: 'Minesweeper', summary: 'Reveal safe tiles and flag the mines.', category: 'indie' },
   { id: 'solitaire', label: 'Solitaire', summary: 'A compact solitaire card layout.', category: 'indie' },
+  { id: 'chess', label: 'Chess', summary: 'Local two-player chess on one screen.', category: 'indie' },
   { id: 'memory', label: 'Memory', summary: 'Flip cards and match every pair.', category: 'indie' },
   { id: 'blankSlate', label: 'Blank Slate', summary: 'Roll prompts and score matching ideas.', category: 'indie' },
   { id: 'ticTacToe', label: 'Tic-Tac-Toe', summary: 'Local two-player X and O faceoff.', category: 'indie' },
@@ -169,6 +255,11 @@ const GAME_META = {
     tag: 'NYT-style category puzzle',
     title: 'Connections',
     description: 'Find four hidden sets of related words. Select four tiles, then submit the set.'
+  },
+  strands: {
+    tag: 'NYT-style word search',
+    title: 'Strands',
+    description: 'Drag through neighboring letters to find the themed words and the spangram.'
   },
   sudoku: {
     tag: 'Classic number logic',
@@ -220,6 +311,11 @@ const GAME_META = {
     title: 'Solitaire',
     description: 'Draw from the stock, build foundations, and sort the tableau.'
   },
+  chess: {
+    tag: 'Local two-player strategy',
+    title: 'Chess',
+    description: 'Play on one device with white at the bottom, black at the top, and optional chess-clock presets.'
+  },
   memory: {
     tag: 'Quick matching game',
     title: 'Memory',
@@ -268,6 +364,9 @@ const refs = {
   saveCustomData: document.getElementById('save-custom-data'),
   resetCustomData: document.getElementById('reset-custom-data'),
   exportCustomData: document.getElementById('export-custom-data'),
+  exportHighScores: document.getElementById('export-high-scores'),
+  importHighScoresButton: document.getElementById('import-high-scores-button'),
+  importHighScoresInput: document.getElementById('import-high-scores-input'),
   customStatus: document.getElementById('custom-data-status'),
   wordGuessResultModal: document.getElementById('wordguess-result-modal'),
   wordGuessResultBody: document.getElementById('wordguess-result-body'),
@@ -276,22 +375,75 @@ const refs = {
   wordGuessCloseModal: document.getElementById('wordguess-close-modal')
 };
 
+const HIGH_SCORE_CONFIG = {
+  wordGuess: [
+    { key: 'bestTimeMs', label: 'Best Time', type: 'min-time' },
+    { key: 'fewestGuesses', label: 'Fewest Guesses', type: 'min-count' }
+  ],
+  groupSort: [
+    { key: 'bestTimeMs', label: 'Best Time', type: 'min-time' },
+    { key: 'fewestMistakes', label: 'Fewest Misses', type: 'min-count' }
+  ],
+  strands: [
+    { key: 'bestTimeMs', label: 'Best Time', type: 'min-time' },
+    { key: 'fewestHints', label: 'Fewest Hints', type: 'min-count' }
+  ],
+  sudoku: [
+    { key: 'bestTimeMs', label: 'Best Time', type: 'min-time' }
+  ],
+  nonogram: [
+    { key: 'bestTimeMs', label: 'Best Time', type: 'min-time' }
+  ],
+  queens: [
+    { key: 'bestTimeMs', label: 'Best Time', type: 'min-time' }
+  ],
+  pinpoint: [
+    { key: 'bestTimeMs', label: 'Best Time', type: 'min-time' },
+    { key: 'fewestMistakes', label: 'Fewest Misses', type: 'min-count' }
+  ],
+  minesweeper: [
+    { key: 'bestTimeMs', label: 'Best Time', type: 'min-time' }
+  ],
+  solitaire: [
+    { key: 'bestTimeMs', label: 'Best Time', type: 'min-time' },
+    { key: 'fewestMoves', label: 'Fewest Moves', type: 'min-count' }
+  ],
+  memory: [
+    { key: 'bestTimeMs', label: 'Best Time', type: 'min-time' },
+    { key: 'fewestTurns', label: 'Fewest Turns', type: 'min-count' }
+  ],
+  blockBreaker: [
+    { key: 'bestScore', label: 'Most Bricks', type: 'max-count' }
+  ],
+  merge: [
+    { key: 'bestScore', label: 'High Score', type: 'max-count' }
+  ]
+};
+
+const DEFAULT_HIGH_SCORES = {
+  version: 1,
+  games: {}
+};
+
 const app = {
   currentView: 'home',
   activeGame: 'wordGuess',
   homeFilter: 'all',
   customizerOpen: false,
   customData: loadCustomData(),
+  highScores: loadHighScores(),
   states: {},
   lastRandomSelections: {},
-  mergeBest: parseInt(localStorage.getItem(MERGE_BEST_KEY), 10) || 0,
+  mergeBest: 0,
   wordGuessResult: null,
   runtime: {
     snakeTimer: null,
     popcornTimer: null,
     mergeAnimationTimer: null,
     blockBreakerTimer: null,
+    minesweeperTimer: null,
     baseballTimer: null,
+    chessTimer: null,
     sudokuCompareTimer: null,
     queensCompareTimer: null,
     dictionaryWordSet: null
@@ -380,6 +532,48 @@ const CARD_SUITS = [
 ];
 const SOLITAIRE_CARD_IMAGE_ROOT = 'PNG-cards';
 const SOLITAIRE_CARD_BACK_IMAGE = `${SOLITAIRE_CARD_IMAGE_ROOT}/back-of-card.png`;
+const CHESS_FILES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+const CHESS_PIECE_GLYPHS = {
+  k: '♔',
+  q: '♕',
+  r: '♖',
+  b: '♗',
+  n: '♘',
+  p: '♙'
+};
+const CHESS_TIME_GROUPS = [
+  {
+    label: 'Bullet',
+    options: [
+      { id: '20-1', label: '20 sec | 1', seconds: 20, increment: 1 },
+      { id: '30-0', label: '30 sec', seconds: 30, increment: 0 },
+      { id: '60-0', label: '1 min', seconds: 60, increment: 0 },
+      { id: '60-1', label: '1 | 1', seconds: 60, increment: 1 },
+      { id: '120-1', label: '2 | 1', seconds: 120, increment: 1 }
+    ]
+  },
+  {
+    label: 'Blitz',
+    options: [
+      { id: '180-0', label: '3 min', seconds: 180, increment: 0 },
+      { id: '180-2', label: '3 | 2', seconds: 180, increment: 2 },
+      { id: '300-0', label: '5 min', seconds: 300, increment: 0 },
+      { id: '300-2', label: '5 | 2', seconds: 300, increment: 2 },
+      { id: '300-5', label: '5 | 5', seconds: 300, increment: 5 }
+    ]
+  },
+  {
+    label: 'Rapid',
+    options: [
+      { id: '600-0', label: '10 min', seconds: 600, increment: 0 },
+      { id: '600-5', label: '10 | 5', seconds: 600, increment: 5 },
+      { id: '900-10', label: '15 | 10', seconds: 900, increment: 10 },
+      { id: '1200-0', label: '20 min', seconds: 1200, increment: 0 },
+      { id: '1800-0', label: '30 min', seconds: 1800, increment: 0 },
+      { id: '3600-0', label: '60 min', seconds: 3600, increment: 0 }
+    ]
+  }
+];
 
 function deepClone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -398,9 +592,43 @@ function loadCustomData() {
   return parsed && typeof parsed === 'object' ? parsed : deepClone(DEFAULT_CUSTOM_DATA);
 }
 
+function loadHighScores() {
+  const parsed = safeParse(localStorage.getItem(HIGH_SCORE_STORAGE_KEY), null);
+  if (parsed && parsed.version === 1 && parsed.games && typeof parsed.games === 'object') {
+    return parsed;
+  }
+  return deepClone(DEFAULT_HIGH_SCORES);
+}
+
+function hydrateHighScores() {
+  const legacyMergeBest = Number.parseInt(localStorage.getItem(MERGE_BEST_KEY), 10);
+  const storedMergeBest = app.highScores?.games?.merge?.bestScore;
+  const bestScore = Math.max(
+    Number.isFinite(legacyMergeBest) ? legacyMergeBest : 0,
+    typeof storedMergeBest === 'number' && Number.isFinite(storedMergeBest) ? storedMergeBest : 0
+  );
+
+  app.mergeBest = bestScore;
+  if (bestScore > 0) {
+    ensureGameHighScoreBucket('merge').bestScore = bestScore;
+    localStorage.setItem(MERGE_BEST_KEY, String(bestScore));
+  } else {
+    localStorage.removeItem(MERGE_BEST_KEY);
+  }
+  localStorage.setItem(HIGH_SCORE_STORAGE_KEY, JSON.stringify(app.highScores));
+}
+
 function saveCustomData(value) {
   app.customData = value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+}
+
+function saveHighScores() {
+  localStorage.setItem(HIGH_SCORE_STORAGE_KEY, JSON.stringify(app.highScores));
+  const mergeBest = app.highScores?.games?.merge?.bestScore;
+  app.mergeBest = typeof mergeBest === 'number' && Number.isFinite(mergeBest) ? mergeBest : 0;
+  if (app.mergeBest > 0) localStorage.setItem(MERGE_BEST_KEY, String(app.mergeBest));
+  else localStorage.removeItem(MERGE_BEST_KEY);
 }
 
 function refreshCustomEditor() {
@@ -415,6 +643,114 @@ function setCustomStatus(text, tone = '') {
 function setGameMessage(text, tone = '') {
   refs.gameMessage.textContent = text;
   refs.gameMessage.className = tone ? `game-message ${tone}` : 'game-message';
+}
+
+function formatDuration(ms) {
+  const totalSeconds = Math.max(0, Math.floor((ms || 0) / 1000));
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  if (hours) return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  return `${minutes}:${String(seconds).padStart(2, '0')}`;
+}
+
+function getElapsedSince(startedAt, finishedAt = null) {
+  if (!startedAt) return 0;
+  const end = finishedAt || Date.now();
+  return Math.max(0, end - startedAt);
+}
+
+function ensureGameHighScoreBucket(gameId) {
+  if (!app.highScores.games[gameId]) app.highScores.games[gameId] = {};
+  return app.highScores.games[gameId];
+}
+
+function recordHighScore(gameId, payload) {
+  const config = HIGH_SCORE_CONFIG[gameId];
+  if (!config) return false;
+  const gameScores = ensureGameHighScoreBucket(gameId);
+  let changed = false;
+
+  config.forEach(metric => {
+    const nextValue = payload?.[metric.key];
+    if (typeof nextValue !== 'number' || !Number.isFinite(nextValue)) return;
+    const currentValue = gameScores[metric.key];
+    const shouldReplace = typeof currentValue !== 'number'
+      ? true
+      : metric.type.startsWith('min')
+        ? nextValue < currentValue
+        : nextValue > currentValue;
+    if (shouldReplace) {
+      gameScores[metric.key] = nextValue;
+      changed = true;
+    }
+  });
+
+  if (changed) saveHighScores();
+  return changed;
+}
+
+function getHighScoreDisplayValue(metric, value) {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return 'None';
+  if (metric.type === 'min-time') return formatDuration(value);
+  return String(value);
+}
+
+function renderHighScoreSummary(gameId) {
+  const config = HIGH_SCORE_CONFIG[gameId];
+  if (!config?.length) return;
+  const gameScores = app.highScores.games[gameId] || {};
+  const summary = `
+    <div class="score-strip">
+      ${config.map(metric => `
+        <div class="score-pill">
+          <span>${metric.label}</span>
+          <strong>${getHighScoreDisplayValue(metric, gameScores[metric.key])}</strong>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  refs.gameTools.insertAdjacentHTML('beforeend', summary);
+}
+
+function submitGameScore(state, gameId, payload) {
+  if (!state || state.scoreSubmitted) return;
+  recordHighScore(gameId, payload);
+  state.scoreSubmitted = true;
+}
+
+function normalizeImportedHighScores(value) {
+  if (!value || typeof value !== 'object') return null;
+  if (value.version !== 1 || !value.games || typeof value.games !== 'object') return null;
+  const normalized = deepClone(DEFAULT_HIGH_SCORES);
+
+  Object.entries(HIGH_SCORE_CONFIG).forEach(([gameId, metrics]) => {
+    const source = value.games[gameId];
+    if (!source || typeof source !== 'object') return;
+    normalized.games[gameId] = {};
+    metrics.forEach(metric => {
+      const metricValue = source[metric.key];
+      if (typeof metricValue === 'number' && Number.isFinite(metricValue)) {
+        normalized.games[gameId][metric.key] = metricValue;
+      }
+    });
+    if (!Object.keys(normalized.games[gameId]).length) delete normalized.games[gameId];
+  });
+
+  return normalized;
+}
+
+function importHighScoresFromText(rawText) {
+  const parsed = safeParse(rawText, null);
+  const normalized = normalizeImportedHighScores(parsed);
+  if (!normalized) {
+    setCustomStatus('High score file could not be imported. It must be a Puzzle USB high score JSON file.', 'danger');
+    return;
+  }
+  app.highScores = normalized;
+  saveHighScores();
+  renderApp();
+  setCustomStatus('High scores imported for this browser.', 'success');
 }
 
 function normalizeWord(word) {
@@ -531,6 +867,36 @@ function getNonogramPuzzles() {
   return puzzles.length ? puzzles : deepClone(DEFAULT_CUSTOM_DATA.nonogram.puzzles);
 }
 
+function getStrandsBoards() {
+  const source = Array.isArray(app.customData.strands?.boards)
+    ? app.customData.strands.boards
+    : DEFAULT_CUSTOM_DATA.strands.boards;
+  const boards = source.map(board => {
+    const title = String(board?.title || 'Strands Board').trim() || 'Strands Board';
+    const clue = String(board?.clue || '').trim();
+    const spangram = normalizeWord(board?.spangram);
+    const startingBoard = Array.isArray(board?.startingBoard)
+      ? board.startingBoard.map(row => String(row || '').trim().toUpperCase())
+      : [];
+    const width = startingBoard[0]?.length || 0;
+    if (!clue || !spangram || !startingBoard.length || startingBoard.some(row => row.length !== width)) return null;
+    const themeCoords = board?.themeCoords && typeof board.themeCoords === 'object' ? board.themeCoords : {};
+    const normalizedThemeCoords = Object.fromEntries(
+      Object.entries(themeCoords)
+        .map(([word, coords]) => [normalizeWord(word), Array.isArray(coords) ? coords.map(pair => [Number(pair[0]), Number(pair[1])]) : []])
+        .filter(([, coords]) => coords.length)
+    );
+    const solutions = Array.isArray(board?.solutions)
+      ? board.solutions.map(normalizeWord).filter(Boolean)
+      : Object.keys(normalizedThemeCoords);
+    const spangramCoords = Array.isArray(board?.spangramCoords)
+      ? board.spangramCoords.map(pair => [Number(pair[0]), Number(pair[1])])
+      : [];
+    return { title, clue, spangram, startingBoard, solutions, themeCoords: normalizedThemeCoords, spangramCoords };
+  }).filter(Boolean);
+  return boards.length ? boards : deepClone(DEFAULT_CUSTOM_DATA.strands.boards);
+}
+
 function getPinpointPacks() {
   const source = Array.isArray(app.customData.pinpoint?.packs)
     ? app.customData.pinpoint.packs.concat(DEFAULT_CUSTOM_DATA.pinpoint.packs)
@@ -595,7 +961,14 @@ function getImposterWordPool(difficulty) {
 
 function createWordGuessState() {
   const answers = getWordleAnswerList();
-  return { solution: sampleWithoutImmediateRepeat(answers, 'wordGuess'), guesses: [], current: '', status: 'playing' };
+  return {
+    solution: sampleWithoutImmediateRepeat(answers, 'wordGuess'),
+    guesses: [],
+    current: '',
+    status: 'playing',
+    startedAt: Date.now(),
+    scoreSubmitted: false
+  };
 }
 
 function createGroupSortState() {
@@ -616,7 +989,9 @@ function createGroupSortState() {
     })))),
     selectedIds: [],
     solvedGroupIds: [],
-    mistakes: 0
+    mistakes: 0,
+    startedAt: Date.now(),
+    scoreSubmitted: false
   };
 }
 
@@ -921,7 +1296,14 @@ function normalizeNonogramGrid(grid) {
 function createNonogramState() {
   const puzzle = sample(getNonogramPuzzles());
   const solution = normalizeNonogramGrid(puzzle.grid);
-  return { title: puzzle.title, solution, board: solution.map(row => row.map(() => 0)) };
+  return {
+    title: puzzle.title,
+    solution,
+    board: solution.map(row => row.map(() => 0)),
+    startedAt: Date.now(),
+    solved: false,
+    scoreSubmitted: false
+  };
 }
 
 function generateQueensSolution(size) {
@@ -1196,14 +1578,49 @@ function createQueensState(size = sample(getQueensSizes())) {
       regions,
       board: Array.from({ length: size }, () => Array(size).fill(0)),
       startedAt: Date.now(),
-      showSolution: false
+      showSolution: false,
+      scoreSubmitted: false
     };
   }
 }
 
 function createPinpointState() {
   const pack = sampleWithoutImmediateRepeat(getPinpointPacks(), 'pinpoint', entry => entry.answer);
-  return { answer: pack.answer, clues: pack.clues.slice(), revealed: 1, current: '', guesses: [], solved: false };
+  return {
+    answer: pack.answer,
+    clues: pack.clues.slice(),
+    revealed: 1,
+    current: '',
+    guesses: [],
+    solved: false,
+    startedAt: Date.now(),
+    scoreSubmitted: false
+  };
+}
+
+function createStrandsState() {
+  const board = deepClone(sampleWithoutImmediateRepeat(getStrandsBoards(), 'strands', entry => entry.title));
+  return {
+    title: board.title,
+    clue: board.clue,
+    spangram: board.spangram,
+    spangramCoords: board.spangramCoords || [],
+    startingBoard: board.startingBoard,
+    solutions: board.solutions || Object.keys(board.themeCoords),
+    themeCoords: board.themeCoords,
+    width: board.startingBoard[0].length,
+    height: board.startingBoard.length,
+    selected: [],
+    currentGuess: '',
+    foundThemeWords: [],
+    foundBonusWords: [],
+    foundSpangram: false,
+    wordsRemainingForHint: 3,
+    hintsUsed: 0,
+    solved: false,
+    startedAt: Date.now(),
+    scoreSubmitted: false
+  };
 }
 
 function createSnakeSetup() {
@@ -1416,7 +1833,8 @@ function createBlockBreakerState() {
     lives: 3,
     wall,
     bricksBroken: 0,
-    lastStatus: 'Click the board or press Start to launch the ball.'
+    lastStatus: 'Click the board or press Start to launch the ball.',
+    scoreSubmitted: false
   };
 }
 
@@ -1473,7 +1891,10 @@ function createMinesweeperState() {
     board: createMinesweeperBoard(10, 14),
     over: false,
     won: false,
-    flagsLeft: 14
+    flagsLeft: 14,
+    startedAt: null,
+    finishedAt: null,
+    scoreSubmitted: false
   };
 }
 
@@ -1510,7 +1931,9 @@ function createSolitaireState() {
     selected: null,
     won: false,
     moves: 0,
-    history: []
+    history: [],
+    startedAt: Date.now(),
+    scoreSubmitted: false
   };
 }
 
@@ -1527,7 +1950,9 @@ function createMemoryState(difficulty = 'medium') {
     secondPick: null,
     turns: 0,
     locked: false,
-    won: false
+    won: false,
+    startedAt: Date.now(),
+    scoreSubmitted: false
   };
 }
 
@@ -1566,10 +1991,473 @@ function createTicTacToeState() {
   };
 }
 
+function buildChessBoard() {
+  const backRank = ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'];
+  const board = Array.from({ length: 8 }, () => Array(8).fill(null));
+  for (let x = 0; x < 8; x += 1) {
+    board[0][x] = { type: backRank[x], color: 'b', moved: false };
+    board[1][x] = { type: 'p', color: 'b', moved: false };
+    board[6][x] = { type: 'p', color: 'w', moved: false };
+    board[7][x] = { type: backRank[x], color: 'w', moved: false };
+  }
+  return board;
+}
+
+function cloneChessBoard(board) {
+  return board.map(row => row.map(piece => (piece ? { ...piece } : null)));
+}
+
+function getOpposingChessColor(color) {
+  return color === 'w' ? 'b' : 'w';
+}
+
+function inChessBounds(x, y) {
+  return x >= 0 && x < 8 && y >= 0 && y < 8;
+}
+
+function getChessTimeOption(optionId) {
+  return CHESS_TIME_GROUPS.flatMap(group => group.options).find(option => option.id === optionId) || CHESS_TIME_GROUPS[2].options[0];
+}
+
+function formatChessClock(seconds) {
+  const safeSeconds = Math.max(0, seconds);
+  const wholeSeconds = Math.floor(safeSeconds);
+  const minutes = Math.floor(wholeSeconds / 60);
+  const secs = wholeSeconds % 60;
+  if (minutes >= 60) {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    return `${hours}:${String(remainingMinutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }
+  return `${minutes}:${String(secs).padStart(2, '0')}`;
+}
+
+function createChessState() {
+  return {
+    screen: 'setup-mode',
+    timed: false,
+    selectedTimeId: CHESS_TIME_GROUPS[2].options[0].id,
+    timeLabel: 'Untimed',
+    increment: 0,
+    board: buildChessBoard(),
+    turn: 'w',
+    selected: null,
+    legalMoves: [],
+    lastMove: null,
+    status: 'setup',
+    winner: '',
+    resultReason: '',
+    moveCount: 0,
+    enPassant: null,
+    clocks: { w: 0, b: 0 },
+    lastTickAt: 0,
+    checkColor: '',
+    captured: { w: [], b: [] }
+  };
+}
+
+function createChessMove(x, y, extra = {}) {
+  return { x, y, ...extra };
+}
+
+function getChessPiece(board, x, y) {
+  return inChessBounds(x, y) ? board[y][x] : null;
+}
+
+function findChessKing(board, color) {
+  for (let y = 0; y < 8; y += 1) {
+    for (let x = 0; x < 8; x += 1) {
+      const piece = board[y][x];
+      if (piece?.type === 'k' && piece.color === color) return { x, y };
+    }
+  }
+  return null;
+}
+
+function isChessSquareAttacked(board, targetX, targetY, attackerColor) {
+  const pawnDirection = attackerColor === 'w' ? -1 : 1;
+  const pawnRow = targetY - pawnDirection;
+  for (const offsetX of [-1, 1]) {
+    const pawn = getChessPiece(board, targetX + offsetX, pawnRow);
+    if (pawn?.color === attackerColor && pawn.type === 'p') return true;
+  }
+
+  const knightOffsets = [
+    [1, 2], [2, 1], [2, -1], [1, -2],
+    [-1, -2], [-2, -1], [-2, 1], [-1, 2]
+  ];
+  for (const [dx, dy] of knightOffsets) {
+    const piece = getChessPiece(board, targetX + dx, targetY + dy);
+    if (piece?.color === attackerColor && piece.type === 'n') return true;
+  }
+
+  const lineChecks = [
+    { dirs: [[1, 0], [-1, 0], [0, 1], [0, -1]], types: ['r', 'q'] },
+    { dirs: [[1, 1], [1, -1], [-1, 1], [-1, -1]], types: ['b', 'q'] }
+  ];
+  for (const { dirs, types } of lineChecks) {
+    for (const [dx, dy] of dirs) {
+      let x = targetX + dx;
+      let y = targetY + dy;
+      while (inChessBounds(x, y)) {
+        const piece = getChessPiece(board, x, y);
+        if (piece) {
+          if (piece.color === attackerColor && types.includes(piece.type)) return true;
+          break;
+        }
+        x += dx;
+        y += dy;
+      }
+    }
+  }
+
+  for (let dy = -1; dy <= 1; dy += 1) {
+    for (let dx = -1; dx <= 1; dx += 1) {
+      if (!dx && !dy) continue;
+      const piece = getChessPiece(board, targetX + dx, targetY + dy);
+      if (piece?.color === attackerColor && piece.type === 'k') return true;
+    }
+  }
+
+  return false;
+}
+
+function isChessKingInCheck(board, color) {
+  const king = findChessKing(board, color);
+  if (!king) return false;
+  return isChessSquareAttacked(board, king.x, king.y, getOpposingChessColor(color));
+}
+
+function getChessPseudoMoves(board, x, y, state, attacksOnly = false) {
+  const piece = getChessPiece(board, x, y);
+  if (!piece) return [];
+  const moves = [];
+  const pushSlideMoves = directions => {
+    for (const [dx, dy] of directions) {
+      let nextX = x + dx;
+      let nextY = y + dy;
+      while (inChessBounds(nextX, nextY)) {
+        const target = getChessPiece(board, nextX, nextY);
+        if (!target) {
+          moves.push(createChessMove(nextX, nextY));
+        } else {
+          if (target.color !== piece.color) moves.push(createChessMove(nextX, nextY, { capture: true }));
+          break;
+        }
+        nextX += dx;
+        nextY += dy;
+      }
+    }
+  };
+
+  if (piece.type === 'p') {
+    const forward = piece.color === 'w' ? -1 : 1;
+    const startRow = piece.color === 'w' ? 6 : 1;
+    const nextY = y + forward;
+    if (!attacksOnly && inChessBounds(x, nextY) && !getChessPiece(board, x, nextY)) {
+      moves.push(createChessMove(x, nextY, { promotion: nextY === 0 || nextY === 7 }));
+      const jumpY = y + forward * 2;
+      if (y === startRow && inChessBounds(x, jumpY) && !getChessPiece(board, x, jumpY)) {
+        moves.push(createChessMove(x, jumpY, { doubleStep: true }));
+      }
+    }
+    for (const offsetX of [-1, 1]) {
+      const targetX = x + offsetX;
+      const targetY = y + forward;
+      if (!inChessBounds(targetX, targetY)) continue;
+      const target = getChessPiece(board, targetX, targetY);
+      if (target?.color === getOpposingChessColor(piece.color)) {
+        moves.push(createChessMove(targetX, targetY, { capture: true, promotion: targetY === 0 || targetY === 7 }));
+      }
+      if (!attacksOnly && state.enPassant && state.enPassant.color !== piece.color && state.enPassant.x === targetX && state.enPassant.y === targetY) {
+        moves.push(createChessMove(targetX, targetY, {
+          capture: true,
+          enPassant: true,
+          captureX: state.enPassant.pawnX,
+          captureY: state.enPassant.pawnY
+        }));
+      }
+    }
+    return moves;
+  }
+
+  if (piece.type === 'n') {
+    const offsets = [
+      [1, 2], [2, 1], [2, -1], [1, -2],
+      [-1, -2], [-2, -1], [-2, 1], [-1, 2]
+    ];
+    for (const [dx, dy] of offsets) {
+      const targetX = x + dx;
+      const targetY = y + dy;
+      if (!inChessBounds(targetX, targetY)) continue;
+      const target = getChessPiece(board, targetX, targetY);
+      if (!target || target.color !== piece.color) {
+        moves.push(createChessMove(targetX, targetY, { capture: Boolean(target) }));
+      }
+    }
+    return moves;
+  }
+
+  if (piece.type === 'b') {
+    pushSlideMoves([[1, 1], [1, -1], [-1, 1], [-1, -1]]);
+    return moves;
+  }
+
+  if (piece.type === 'r') {
+    pushSlideMoves([[1, 0], [-1, 0], [0, 1], [0, -1]]);
+    return moves;
+  }
+
+  if (piece.type === 'q') {
+    pushSlideMoves([[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]]);
+    return moves;
+  }
+
+  for (let dy = -1; dy <= 1; dy += 1) {
+    for (let dx = -1; dx <= 1; dx += 1) {
+      if (!dx && !dy) continue;
+      const targetX = x + dx;
+      const targetY = y + dy;
+      if (!inChessBounds(targetX, targetY)) continue;
+      const target = getChessPiece(board, targetX, targetY);
+      if (!target || target.color !== piece.color) {
+        moves.push(createChessMove(targetX, targetY, { capture: Boolean(target) }));
+      }
+    }
+  }
+
+  if (attacksOnly || piece.moved || isChessKingInCheck(board, piece.color)) return moves;
+
+  const homeRow = piece.color === 'w' ? 7 : 0;
+  const rookKingSide = getChessPiece(board, 7, homeRow);
+  if (rookKingSide?.type === 'r' && rookKingSide.color === piece.color && !rookKingSide.moved
+    && !getChessPiece(board, 5, homeRow)
+    && !getChessPiece(board, 6, homeRow)
+    && !isChessSquareAttacked(board, 5, homeRow, getOpposingChessColor(piece.color))
+    && !isChessSquareAttacked(board, 6, homeRow, getOpposingChessColor(piece.color))) {
+    moves.push(createChessMove(6, homeRow, { castle: 'king' }));
+  }
+
+  const rookQueenSide = getChessPiece(board, 0, homeRow);
+  if (rookQueenSide?.type === 'r' && rookQueenSide.color === piece.color && !rookQueenSide.moved
+    && !getChessPiece(board, 1, homeRow)
+    && !getChessPiece(board, 2, homeRow)
+    && !getChessPiece(board, 3, homeRow)
+    && !isChessSquareAttacked(board, 3, homeRow, getOpposingChessColor(piece.color))
+    && !isChessSquareAttacked(board, 2, homeRow, getOpposingChessColor(piece.color))) {
+    moves.push(createChessMove(2, homeRow, { castle: 'queen' }));
+  }
+
+  return moves;
+}
+
+function applyChessMove(board, fromX, fromY, move, state) {
+  const nextBoard = cloneChessBoard(board);
+  const movingPiece = { ...nextBoard[fromY][fromX], moved: true };
+  let capturedPiece = null;
+  nextBoard[fromY][fromX] = null;
+
+  if (move.castle === 'king') {
+    nextBoard[move.y][move.x] = movingPiece;
+    const rook = { ...nextBoard[move.y][7], moved: true };
+    nextBoard[move.y][7] = null;
+    nextBoard[move.y][5] = rook;
+  } else if (move.castle === 'queen') {
+    nextBoard[move.y][move.x] = movingPiece;
+    const rook = { ...nextBoard[move.y][0], moved: true };
+    nextBoard[move.y][0] = null;
+    nextBoard[move.y][3] = rook;
+  } else {
+    if (move.enPassant) {
+      capturedPiece = nextBoard[move.captureY][move.captureX];
+      nextBoard[move.captureY][move.captureX] = null;
+    } else {
+      capturedPiece = nextBoard[move.y][move.x];
+    }
+    if (move.promotion) movingPiece.type = 'q';
+    nextBoard[move.y][move.x] = movingPiece;
+  }
+
+  const enPassant = movingPiece.type === 'p' && move.doubleStep
+    ? {
+      x: fromX,
+      y: fromY + (move.y - fromY) / 2,
+      pawnX: move.x,
+      pawnY: move.y,
+      color: movingPiece.color
+    }
+    : null;
+
+  return {
+    board: nextBoard,
+    enPassant,
+    capturedPiece
+  };
+}
+
+function getLegalChessMoves(state, x, y) {
+  const piece = getChessPiece(state.board, x, y);
+  if (!piece || piece.color !== state.turn) return [];
+  const pseudoMoves = getChessPseudoMoves(state.board, x, y, state, false);
+  return pseudoMoves.filter(move => {
+    const next = applyChessMove(state.board, x, y, move, state);
+    return !isChessKingInCheck(next.board, piece.color);
+  });
+}
+
+function getAllLegalChessMoves(state, color) {
+  const moves = [];
+  for (let y = 0; y < 8; y += 1) {
+    for (let x = 0; x < 8; x += 1) {
+      const piece = getChessPiece(state.board, x, y);
+      if (piece?.color !== color) continue;
+      const legal = getLegalChessMoves({ ...state, turn: color }, x, y);
+      if (legal.length) moves.push({ from: { x, y }, moves: legal });
+    }
+  }
+  return moves;
+}
+
+function syncChessClock(state) {
+  if (!state.timed || state.screen !== 'playing' || state.status !== 'playing' || !state.lastTickAt) return;
+  const now = Date.now();
+  const elapsed = Math.max(0, (now - state.lastTickAt) / 1000);
+  if (!elapsed) return;
+  state.clocks[state.turn] = Math.max(0, state.clocks[state.turn] - elapsed);
+  state.lastTickAt = now;
+  if (state.clocks[state.turn] <= 0) {
+    state.clocks[state.turn] = 0;
+    state.status = 'timeout';
+    state.winner = getOpposingChessColor(state.turn);
+    state.resultReason = 'time';
+  }
+}
+
+function stopChessLoop() {
+  if (app.runtime.chessTimer) {
+    clearInterval(app.runtime.chessTimer);
+    app.runtime.chessTimer = null;
+  }
+}
+
+function startChessLoop() {
+  stopChessLoop();
+  app.runtime.chessTimer = setInterval(() => {
+    if (app.currentView !== 'play' || app.activeGame !== 'chess') return;
+    const state = getGameState('chess');
+    if (!state.timed || state.screen !== 'playing' || state.status !== 'playing') return;
+    const beforeSecond = Math.ceil(state.clocks[state.turn]);
+    syncChessClock(state);
+    if (state.status !== 'playing') {
+      stopChessLoop();
+      renderActiveGame();
+      return;
+    }
+    const afterSecond = Math.ceil(state.clocks[state.turn]);
+    if (beforeSecond !== afterSecond) renderActiveGame();
+  }, 200);
+}
+
+function startChessMatch(state, timed, optionId = state.selectedTimeId) {
+  const timeOption = getChessTimeOption(optionId);
+  state.screen = 'playing';
+  state.timed = timed;
+  state.selectedTimeId = timeOption.id;
+  state.timeLabel = timed ? timeOption.label : 'Untimed';
+  state.increment = timed ? timeOption.increment : 0;
+  state.board = buildChessBoard();
+  state.turn = 'w';
+  state.selected = null;
+  state.legalMoves = [];
+  state.lastMove = null;
+  state.status = 'playing';
+  state.winner = '';
+  state.resultReason = '';
+  state.moveCount = 0;
+  state.enPassant = null;
+  state.checkColor = '';
+  state.captured = { w: [], b: [] };
+  state.clocks = timed ? { w: timeOption.seconds, b: timeOption.seconds } : { w: 0, b: 0 };
+  state.lastTickAt = timed ? Date.now() : 0;
+  if (timed) startChessLoop();
+  else stopChessLoop();
+}
+
+function completeChessTurn(state, movingColor) {
+  const nextColor = getOpposingChessColor(movingColor);
+  state.turn = nextColor;
+  state.selected = null;
+  state.legalMoves = [];
+  state.moveCount += 1;
+  state.checkColor = isChessKingInCheck(state.board, nextColor) ? nextColor : '';
+  const nextMoves = getAllLegalChessMoves(state, nextColor);
+  if (!nextMoves.length) {
+    if (state.checkColor) {
+      state.status = 'checkmate';
+      state.winner = movingColor;
+      state.resultReason = 'checkmate';
+    } else {
+      state.status = 'stalemate';
+      state.winner = 'draw';
+      state.resultReason = 'stalemate';
+    }
+    stopChessLoop();
+    return;
+  }
+  state.status = 'playing';
+  if (state.timed) state.lastTickAt = Date.now();
+}
+
+function commitChessMove(fromX, fromY, move) {
+  const state = getGameState('chess');
+  if (state.screen !== 'playing' || state.status !== 'playing') return;
+  const piece = getChessPiece(state.board, fromX, fromY);
+  if (!piece || piece.color !== state.turn) return;
+  syncChessClock(state);
+  if (state.status !== 'playing') {
+    stopChessLoop();
+    renderActiveGame();
+    return;
+  }
+  const result = applyChessMove(state.board, fromX, fromY, move, state);
+  state.board = result.board;
+  state.enPassant = result.enPassant;
+  if (result.capturedPiece) state.captured[piece.color].push(result.capturedPiece);
+  if (state.timed) state.clocks[piece.color] += state.increment;
+  state.lastMove = { fromX, fromY, toX: move.x, toY: move.y };
+  completeChessTurn(state, piece.color);
+  renderActiveGame();
+}
+
+function handleChessSquareClick(x, y) {
+  const state = getGameState('chess');
+  if (state.screen !== 'playing' || state.status !== 'playing') return;
+  const targetMove = state.legalMoves.find(move => move.x === x && move.y === y);
+  if (state.selected && targetMove) {
+    commitChessMove(state.selected.x, state.selected.y, targetMove);
+    return;
+  }
+  const piece = getChessPiece(state.board, x, y);
+  if (!piece || piece.color !== state.turn) {
+    state.selected = null;
+    state.legalMoves = [];
+    renderActiveGame();
+    return;
+  }
+  state.selected = { x, y };
+  state.legalMoves = getLegalChessMoves(state, x, y);
+  renderActiveGame();
+}
+
+function getChessSquareName(x, y) {
+  return `${CHESS_FILES[x]}${8 - y}`;
+}
+
 const GAME_BUILDERS = {
   wordGuess: createWordGuessState,
   spellingBee: createSpellingBeeState,
   groupSort: createGroupSortState,
+  strands: createStrandsState,
   sudoku: createSudokuState,
   nonogram: createNonogramState,
   queens: createQueensState,
@@ -1580,6 +2468,7 @@ const GAME_BUILDERS = {
   imposter: createImposterState,
   minesweeper: createMinesweeperState,
   solitaire: createSolitaireState,
+  chess: createChessState,
   memory: createMemoryState,
   blankSlate: createBlankSlateState,
   ticTacToe: createTicTacToeState,
@@ -1630,6 +2519,13 @@ function stopBaseballLoop() {
   }
 }
 
+function stopMinesweeperLoop() {
+  if (app.runtime.minesweeperTimer) {
+    clearInterval(app.runtime.minesweeperTimer);
+    app.runtime.minesweeperTimer = null;
+  }
+}
+
 function cleanupGame(gameId) {
   if (gameId === 'snake') {
     stopSnakeLoop();
@@ -1646,6 +2542,8 @@ function cleanupGame(gameId) {
   if (gameId === 'popcorn') stopPopcornLoop();
   if (gameId === 'blockBreaker') stopBlockBreakerLoop();
   if (gameId === 'baseball') stopBaseballLoop();
+  if (gameId === 'minesweeper') stopMinesweeperLoop();
+  if (gameId === 'chess') stopChessLoop();
   if (gameId === 'merge' && app.runtime.mergeAnimationTimer) {
     clearTimeout(app.runtime.mergeAnimationTimer);
     app.runtime.mergeAnimationTimer = null;
@@ -1730,6 +2628,8 @@ function getActionConfig() {
       return { newLabel: 'New Hive', checkLabel: 'Submit Word', checkHidden: false, checkDisabled: state.current.length < 4 };
     case 'groupSort':
       return { newLabel: 'New Pack', checkLabel: 'Submit Set', checkHidden: false, checkDisabled: state.selectedIds.length !== 4 || state.solvedGroupIds.length === 4 };
+    case 'strands':
+      return { newLabel: 'New Board', checkLabel: 'Use Hint', checkHidden: false, checkDisabled: state.solved || state.wordsRemainingForHint > 0 };
     case 'sudoku':
       return { newLabel: 'New Puzzle', checkLabel: 'Check Grid', checkHidden: false, checkDisabled: !canCheckSudoku(state) };
     case 'nonogram':
@@ -1756,6 +2656,8 @@ function getActionConfig() {
       return { newLabel: 'New Field', checkLabel: '', checkHidden: true, checkDisabled: true };
     case 'solitaire':
       return { newLabel: 'New Deal', checkLabel: '', checkHidden: true, checkDisabled: true };
+    case 'chess':
+      return { newLabel: 'New Match', checkLabel: '', checkHidden: true, checkDisabled: true };
     case 'memory':
       return { newLabel: 'New Board', checkLabel: '', checkHidden: true, checkDisabled: true };
     case 'blankSlate':
@@ -1829,6 +2731,9 @@ function renderActiveGame() {
     case 'groupSort':
       renderGroupSort();
       break;
+    case 'strands':
+      renderStrands();
+      break;
     case 'sudoku':
       renderSudoku();
       break;
@@ -1859,6 +2764,9 @@ function renderActiveGame() {
     case 'solitaire':
       renderSolitaire();
       break;
+    case 'chess':
+      renderChess();
+      break;
     case 'memory':
       renderMemory();
       break;
@@ -1877,6 +2785,8 @@ function renderActiveGame() {
     default:
       break;
   }
+
+  renderHighScoreSummary(app.activeGame);
 }
 
 function renderHomeView() {
@@ -2066,7 +2976,13 @@ function submitWordGuess() {
   }
   state.guesses.push(guess);
   state.current = '';
-  if (guess === state.solution) state.status = 'won';
+  if (guess === state.solution) {
+    state.status = 'won';
+    submitGameScore(state, 'wordGuess', {
+      bestTimeMs: getElapsedSince(state.startedAt),
+      fewestGuesses: state.guesses.length
+    });
+  }
   else if (state.guesses.length >= 6) state.status = 'lost';
   renderActiveGame();
   if (state.status === 'won' || state.status === 'lost') openWordGuessResultModal();
@@ -2145,6 +3061,12 @@ function submitGroupSort() {
   if (isMatch && !state.solvedGroupIds.includes(groupId)) {
     state.solvedGroupIds.push(groupId);
     state.selectedIds = [];
+    if (state.solvedGroupIds.length === 4) {
+      submitGameScore(state, 'groupSort', {
+        bestTimeMs: getElapsedSince(state.startedAt),
+        fewestMistakes: state.mistakes
+      });
+    }
     renderActiveGame();
     return;
   }
@@ -2152,6 +3074,233 @@ function submitGroupSort() {
   state.selectedIds = [];
   renderActiveGame();
   setGameMessage('That set does not belong together.', 'warning');
+}
+
+function updateStrandsGuess(state) {
+  state.currentGuess = state.selected.map(([row, col]) => state.startingBoard[row][col]).join('');
+}
+
+function coordsMatchList(left, right) {
+  return left.length === right.length && left.every(([row, col], index) => row === right[index][0] && col === right[index][1]);
+}
+
+function coordsMatchEitherDirection(left, right) {
+  return coordsMatchList(left, right) || coordsMatchList(left, right.slice().reverse());
+}
+
+function getStrandsFoundWordCount(state) {
+  return state.foundThemeWords.length + (state.foundSpangram ? 1 : 0);
+}
+
+function isStrandsSolved(state) {
+  return state.foundSpangram && state.foundThemeWords.length === Object.keys(state.themeCoords).length;
+}
+
+function clearStrandsSelection(state) {
+  state.selected = [];
+  state.currentGuess = '';
+}
+
+function useStrandsHint() {
+  const state = getGameState('strands');
+  if (state.solved || state.wordsRemainingForHint > 0) return;
+
+  const nextThemeWord = Object.keys(state.themeCoords).find(word => !state.foundThemeWords.includes(word));
+  if (nextThemeWord) {
+    state.foundThemeWords.push(nextThemeWord);
+  } else if (!state.foundSpangram) {
+    state.foundSpangram = true;
+  } else {
+    return;
+  }
+
+  state.hintsUsed += 1;
+  state.wordsRemainingForHint = 3;
+  clearStrandsSelection(state);
+  state.solved = isStrandsSolved(state);
+  if (state.solved) {
+    submitGameScore(state, 'strands', {
+      bestTimeMs: getElapsedSince(state.startedAt),
+      fewestHints: state.hintsUsed
+    });
+    setGameMessage('Strands solved.', 'success');
+  } else {
+    setGameMessage('Hint used. One answer was revealed.', 'warning');
+  }
+  renderActiveGame();
+}
+
+function submitStrandsSelection() {
+  const state = getGameState('strands');
+  if (state.selected.length < 2) {
+    clearStrandsSelection(state);
+    renderActiveGame();
+    return;
+  }
+
+  const guess = state.currentGuess;
+  const selectedPath = state.selected.slice();
+  clearStrandsSelection(state);
+
+  if (!state.foundSpangram && guess === state.spangram && coordsMatchEitherDirection(selectedPath, state.spangramCoords)) {
+    state.foundSpangram = true;
+    state.solved = isStrandsSolved(state);
+    if (state.solved) {
+      submitGameScore(state, 'strands', {
+        bestTimeMs: getElapsedSince(state.startedAt),
+        fewestHints: state.hintsUsed
+      });
+    }
+    renderActiveGame();
+    setGameMessage(state.solved ? 'Strands solved.' : 'Spangram found.', 'success');
+    return;
+  }
+
+  const matchingThemeWord = Object.entries(state.themeCoords).find(([word, coords]) => {
+    if (state.foundThemeWords.includes(word)) return false;
+    return guess === word && coordsMatchEitherDirection(selectedPath, coords);
+  });
+  if (matchingThemeWord) {
+    state.foundThemeWords.push(matchingThemeWord[0]);
+    state.solved = isStrandsSolved(state);
+    if (state.solved) {
+      submitGameScore(state, 'strands', {
+        bestTimeMs: getElapsedSince(state.startedAt),
+        fewestHints: state.hintsUsed
+      });
+    }
+    renderActiveGame();
+    setGameMessage(state.solved ? 'Strands solved.' : 'Theme word found.', 'success');
+    return;
+  }
+
+  if (guess.length >= 4 && getDictionaryWordSet().has(guess.toLowerCase()) && !state.foundBonusWords.includes(guess)) {
+    state.foundBonusWords.push(guess);
+    state.wordsRemainingForHint = Math.max(0, state.wordsRemainingForHint - 1);
+    renderActiveGame();
+    if (state.wordsRemainingForHint > 0) {
+      setGameMessage(`Extra word found. ${state.wordsRemainingForHint} more for a hint.`, 'warning');
+    } else {
+      setGameMessage('Hint unlocked. Press Use Hint when you want it.', 'success');
+    }
+    return;
+  }
+
+  renderActiveGame();
+  setGameMessage('That path is not one of the answers.', 'warning');
+}
+
+function pressStrandsCell(row, col) {
+  const state = getGameState('strands');
+  if (state.solved) return;
+
+  const existingIndex = state.selected.findIndex(([selectedRow, selectedCol]) => selectedRow === row && selectedCol === col);
+  if (existingIndex === state.selected.length - 1) {
+    submitStrandsSelection();
+    return;
+  }
+
+  if (existingIndex >= 0) {
+    state.selected = state.selected.slice(0, existingIndex + 1);
+    updateStrandsGuess(state);
+    renderActiveGame();
+    return;
+  }
+
+  const last = state.selected[state.selected.length - 1];
+  if (!last) {
+    state.selected.push([row, col]);
+    updateStrandsGuess(state);
+    renderActiveGame();
+    return;
+  }
+
+  const isAdjacent = Math.abs(last[0] - row) <= 1 && Math.abs(last[1] - col) <= 1 && !(last[0] === row && last[1] === col);
+  if (!isAdjacent) {
+    state.selected = [[row, col]];
+    updateStrandsGuess(state);
+    renderActiveGame();
+    return;
+  }
+
+  state.selected.push([row, col]);
+  updateStrandsGuess(state);
+  renderActiveGame();
+}
+
+function getStrandsCellState(state, row, col) {
+  if (state.selected.some(([selectedRow, selectedCol]) => selectedRow === row && selectedCol === col)) return 'selected';
+  if (state.foundSpangram && state.spangramCoords.some(([matchRow, matchCol]) => matchRow === row && matchCol === col)) return 'spangram';
+  const foundThemeEntries = state.foundThemeWords.map(word => state.themeCoords[word] || []);
+  if (foundThemeEntries.some(coords => coords.some(([matchRow, matchCol]) => matchRow === row && matchCol === col))) return 'found';
+  return '';
+}
+
+function renderStrands() {
+  const state = getGameState('strands');
+  const totalTargets = Object.keys(state.themeCoords).length + 1;
+
+  refs.gameTools.innerHTML = `
+    <div class="inline-tools">
+      <span class="pill">${state.title}</span>
+      <span class="pill">${getStrandsFoundWordCount(state)}/${totalTargets} answers found</span>
+      <span class="pill">Hint meter ${3 - state.wordsRemainingForHint}/3</span>
+      <span class="pill">Hints used ${state.hintsUsed}</span>
+    </div>
+  `;
+
+  refs.gameArea.innerHTML = `
+    <div class="strands-shell">
+      <div class="strands-info-card">
+        <p class="eyebrow">Theme</p>
+        <div class="strands-clue">${state.clue}</div>
+        <div class="strands-current-word">${state.currentGuess || 'Tap neighboring letters. Tap the last selected letter again to submit.'}</div>
+        <div class="inline-tools">
+          <button type="button" class="secondary-button" id="strands-clear" ${state.selected.length ? '' : 'disabled'}>Clear Guess</button>
+          <button type="button" class="secondary-button" id="strands-hint-inline" ${state.solved || state.wordsRemainingForHint > 0 ? 'disabled' : ''}>Use Hint</button>
+        </div>
+      </div>
+      <div class="strands-board" style="--strands-cols:${state.width}">
+        ${state.startingBoard.flatMap((rowText, rowIndex) => rowText.split('').map((letter, colIndex) => `
+          <button
+            type="button"
+            class="strands-cell ${getStrandsCellState(state, rowIndex, colIndex)}"
+            data-strands-cell="${rowIndex}-${colIndex}"
+          >${letter}</button>
+        `)).join('')}
+      </div>
+      <div class="strands-found-panel">
+        <div class="strands-found-group">
+          <h3>Found Answers</h3>
+          <div class="guess-history">
+            ${state.foundThemeWords.map(word => `<span class="guess-chip">${word}</span>`).join('') || '<span class="game-note">No theme words yet.</span>'}
+            ${state.foundSpangram ? `<span class="guess-chip success-chip">${state.spangram}</span>` : ''}
+          </div>
+        </div>
+        <div class="strands-found-group">
+          <h3>Extra Words</h3>
+          <div class="guess-history">
+            ${state.foundBonusWords.map(word => `<span class="guess-chip">${word}</span>`).join('') || '<span class="game-note">Extra words build your hint meter.</span>'}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  refs.gameArea.querySelectorAll('[data-strands-cell]').forEach(button => {
+    button.addEventListener('click', () => {
+      const [row, col] = button.dataset.strandsCell.split('-').map(Number);
+      pressStrandsCell(row, col);
+    });
+  });
+  document.getElementById('strands-clear').addEventListener('click', () => {
+    clearStrandsSelection(state);
+    renderActiveGame();
+  });
+  document.getElementById('strands-hint-inline').addEventListener('click', useStrandsHint);
+
+  if (state.solved) setGameMessage('All answers found.', 'success');
+  else setGameMessage('Find the theme words and the spangram. Extra words can unlock hints.');
 }
 
 function getSudokuConflicts(board) {
@@ -2379,6 +3528,7 @@ function checkSudoku() {
   refreshSudokuUi();
   const solved = metrics.filled === metrics.fillableTotal && incorrectCount === 0;
   if (solved) {
+    submitGameScore(state, 'sudoku', { bestTimeMs: getElapsedSince(state.startedAt) });
     setGameMessage('Sudoku solved.', 'success');
     return;
   }
@@ -2449,8 +3599,10 @@ function renderNonogram() {
       const [row, col] = button.dataset.nonogramCell.split('-').map(Number);
       const value = state.board[row][col];
       state.board[row][col] = value === 1 ? 0 : 1;
+      state.solved = isNonogramSolved();
+      if (state.solved) submitGameScore(state, 'nonogram', { bestTimeMs: getElapsedSince(state.startedAt) });
       renderActiveGame();
-      if (isNonogramSolved()) setGameMessage('Picture solved.', 'success');
+      if (state.solved) setGameMessage('Picture solved.', 'success');
     });
     button.addEventListener('contextmenu', event => {
       event.preventDefault();
@@ -2476,7 +3628,10 @@ function isNonogramSolved() {
 }
 
 function checkNonogram() {
+  const state = getGameState('nonogram');
   const solved = isNonogramSolved();
+  state.solved = solved;
+  if (solved) submitGameScore(state, 'nonogram', { bestTimeMs: getElapsedSince(state.startedAt) });
   setGameMessage(solved ? 'Picture solved.' : 'The filled pattern does not match yet.', solved ? 'success' : 'warning');
 }
 
@@ -2529,6 +3684,7 @@ function analyzeQueensBoard(state) {
 function renderQueens() {
   const state = getGameState('queens');
   const analysis = analyzeQueensBoard(state);
+  if (analysis.solved) submitGameScore(state, 'queens', { bestTimeMs: getElapsedSince(state.startedAt) });
   const compareReady = isCompareReady('queens', state, 5000);
   refs.gameTools.innerHTML = `
     <div class="inline-tools">
@@ -2683,7 +3839,13 @@ function submitPinpointGuess() {
     return;
   }
   state.guesses.push(guess);
-  if (guess === state.answer) state.solved = true;
+  if (guess === state.answer) {
+    state.solved = true;
+    submitGameScore(state, 'pinpoint', {
+      bestTimeMs: getElapsedSince(state.startedAt),
+      fewestMistakes: Math.max(0, state.guesses.length - 1)
+    });
+  }
   state.current = '';
   renderActiveGame();
   if (!state.solved) setGameMessage('Not quite. Reveal another clue or try a new guess.', 'warning');
@@ -3791,6 +4953,7 @@ function moveMerge(direction) {
     app.mergeBest = state.score;
     localStorage.setItem(MERGE_BEST_KEY, String(app.mergeBest));
   }
+  recordHighScore('merge', { bestScore: state.score });
   const spawned = placeRandomMergeTile(state.board);
   state.animation = {
     direction,
@@ -3989,6 +5152,7 @@ function tickBlockBreaker() {
   if (hitBrick) {
     hitBrick.alive = false;
     state.bricksBroken += 1;
+    recordHighScore('blockBreaker', { bestScore: state.bricksBroken });
     state.ball.dy *= -1;
     if (!state.bricks.some(brick => brick.alive)) {
       state.running = false;
@@ -4136,10 +5300,12 @@ function handleBaseballAction() {
 
 function renderMinesweeper() {
   const state = getGameState('minesweeper');
+  const elapsed = state.finishedAt ? getElapsedSince(state.startedAt, state.finishedAt) : getElapsedSince(state.startedAt);
   refs.gameTools.innerHTML = `
     <div class="inline-tools">
       <span class="pill">Flags ${state.flagsLeft}</span>
       <span class="pill">${state.size} x ${state.size}</span>
+      <span class="pill">Time ${formatDuration(elapsed)}</span>
       <span class="pill">Right-click to flag</span>
     </div>
   `;
@@ -4170,9 +5336,22 @@ function renderMinesweeper() {
 function revealMinesweeperCell(row, col) {
   const state = getGameState('minesweeper');
   if (state.over || state.won) return;
+  if (!state.startedAt) {
+    state.startedAt = Date.now();
+    state.finishedAt = null;
+    stopMinesweeperLoop();
+    app.runtime.minesweeperTimer = setInterval(() => {
+      if (app.currentView === 'play' && app.activeGame === 'minesweeper') renderActiveGame();
+    }, 250);
+  }
   revealMinesweeperFrom(state, row, col);
   const cleared = state.board.flat().every(entry => entry.mine || entry.revealed);
-  if (cleared) state.won = true;
+  if (cleared) {
+    state.won = true;
+    state.finishedAt = Date.now();
+    stopMinesweeperLoop();
+    submitGameScore(state, 'minesweeper', { bestTimeMs: getElapsedSince(state.startedAt, state.finishedAt) });
+  }
   renderActiveGame();
 }
 
@@ -4182,6 +5361,8 @@ function revealMinesweeperFrom(state, row, col) {
   cell.revealed = true;
   if (cell.mine) {
     state.over = true;
+    state.finishedAt = Date.now();
+    stopMinesweeperLoop();
     state.board.flat().forEach(entry => { if (entry.mine) entry.revealed = true; });
     return;
   }
@@ -4482,6 +5663,12 @@ function moveSolitaireToFoundation(foundationId) {
   state.selected = null;
   state.moves += 1;
   state.won = state.foundations.every(pile => pile.length === 13);
+  if (state.won) {
+    submitGameScore(state, 'solitaire', {
+      bestTimeMs: getElapsedSince(state.startedAt),
+      fewestMoves: state.moves
+    });
+  }
   renderActiveGame();
 }
 
@@ -4506,6 +5693,177 @@ function moveSolitaireToTableau(columnIndex) {
   state.selected = null;
   state.moves += 1;
   renderActiveGame();
+}
+
+function renderChessPiece(piece) {
+  if (!piece) return '';
+  return `<span class="chess-piece ${piece.color === 'w' ? 'piece-white' : 'piece-black'}">${CHESS_PIECE_GLYPHS[piece.type]}</span>`;
+}
+
+function renderChessBoardMarkup(state) {
+  return `
+    <div class="chess-board">
+      ${state.board.flatMap((row, y) => row.map((piece, x) => {
+        const isDark = (x + y) % 2 === 1;
+        const isSelected = state.selected?.x === x && state.selected?.y === y;
+        const legalMove = state.legalMoves.find(move => move.x === x && move.y === y);
+        const isLastMove = state.lastMove && (
+          (state.lastMove.fromX === x && state.lastMove.fromY === y)
+          || (state.lastMove.toX === x && state.lastMove.toY === y)
+        );
+        const inCheck = piece?.type === 'k' && piece.color === state.checkColor;
+        return `
+          <button
+            type="button"
+            class="chess-square ${isDark ? 'dark' : 'light'} ${isSelected ? 'selected' : ''} ${legalMove ? (legalMove.capture ? 'legal-capture' : 'legal-move') : ''} ${isLastMove ? 'last-move' : ''} ${inCheck ? 'in-check' : ''}"
+            data-chess-square="${x}:${y}"
+            aria-label="${piece ? `${piece.color === 'w' ? 'White' : 'Black'} ${piece.type} on ${getChessSquareName(x, y)}` : `Empty ${getChessSquareName(x, y)}`}"
+          >
+            ${x === 0 ? `<span class="chess-coordinate chess-rank">${8 - y}</span>` : ''}
+            ${y === 7 ? `<span class="chess-coordinate chess-file">${CHESS_FILES[x]}</span>` : ''}
+            ${renderChessPiece(piece)}
+          </button>
+        `;
+      })).join('')}
+    </div>
+  `;
+}
+
+function renderChessSetupMode(state) {
+  refs.gameArea.innerHTML = `
+    <div class="chess-setup-shell">
+      <div class="chess-setup-card">
+        <p class="eyebrow">Game Settings</p>
+        <h3>Choose the match style</h3>
+        <p class="game-note">This is built for two players sharing one phone. White starts, white stays at the bottom, and black pieces are rotated for the top side.</p>
+        <div class="chess-setup-actions">
+          <button type="button" id="chess-untimed">Not Timed</button>
+          <button type="button" id="chess-timed" class="secondary-button">Timed</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('chess-untimed').addEventListener('click', () => {
+    startChessMatch(state, false);
+    renderActiveGame();
+  });
+  document.getElementById('chess-timed').addEventListener('click', () => {
+    state.screen = 'setup-time';
+    renderActiveGame();
+  });
+  setGameMessage('Choose whether this match uses a clock.');
+}
+
+function renderChessTimeSetup(state) {
+  refs.gameArea.innerHTML = `
+    <div class="chess-setup-shell">
+      <div class="chess-setup-card chess-time-card">
+        <p class="eyebrow">Timed Match</p>
+        <h3>Pick a clock</h3>
+        <p class="game-note">Using the same preset labels commonly shown on Chess.com.</p>
+        <div class="chess-time-groups">
+          ${CHESS_TIME_GROUPS.map(group => `
+            <section class="chess-time-group">
+              <h4>${group.label}</h4>
+              <div class="chess-time-options">
+                ${group.options.map(option => `
+                  <button type="button" class="chess-time-option ${state.selectedTimeId === option.id ? 'active' : 'secondary-button'}" data-chess-time="${option.id}">
+                    ${option.label}
+                  </button>
+                `).join('')}
+              </div>
+            </section>
+          `).join('')}
+        </div>
+        <div class="chess-setup-actions">
+          <button type="button" id="chess-back-to-mode" class="secondary-button">Back</button>
+        </div>
+      </div>
+    </div>
+  `;
+  refs.gameArea.querySelectorAll('[data-chess-time]').forEach(button => {
+    button.addEventListener('click', () => {
+      startChessMatch(state, true, button.dataset.chessTime);
+      renderActiveGame();
+    });
+  });
+  document.getElementById('chess-back-to-mode').addEventListener('click', () => {
+    state.screen = 'setup-mode';
+    renderActiveGame();
+  });
+  setGameMessage('Tap a time control to start the match.');
+}
+
+function renderChess() {
+  const state = getGameState('chess');
+  if (state.screen === 'setup-mode') {
+    refs.gameTools.innerHTML = '';
+    renderChessSetupMode(state);
+    return;
+  }
+  if (state.screen === 'setup-time') {
+    refs.gameTools.innerHTML = '';
+    renderChessTimeSetup(state);
+    return;
+  }
+
+  refs.gameTools.innerHTML = `
+    <div class="inline-tools chess-tools">
+      <span class="pill chess-turn-pill ${state.turn === 'w' ? 'white-turn' : 'black-turn'}">${state.turn === 'w' ? 'White to move' : 'Black to move'}</span>
+      <span class="pill">Mode ${state.timeLabel}</span>
+      <span class="pill">Moves ${state.moveCount}</span>
+      <span class="pill">${state.checkColor ? `${state.checkColor === 'w' ? 'White' : 'Black'} in check` : 'Legal moves only'}</span>
+      ${state.timed ? `
+        <span class="pill chess-clock ${state.turn === 'w' && state.status === 'playing' ? 'active' : ''}">White ${formatChessClock(state.clocks.w)}</span>
+        <span class="pill chess-clock ${state.turn === 'b' && state.status === 'playing' ? 'active' : ''}">Black ${formatChessClock(state.clocks.b)}</span>
+      ` : ''}
+    </div>
+  `;
+
+  refs.gameArea.innerHTML = `
+    <div class="chess-shell">
+      <div class="chess-board-panel">
+        ${renderChessBoardMarkup(state)}
+      </div>
+      <div class="chess-side-panel">
+        <div class="chess-status-card">
+          <strong>${state.status === 'playing'
+            ? `${state.turn === 'w' ? 'White' : 'Black'} is up`
+            : state.status === 'checkmate'
+              ? `${state.winner === 'w' ? 'White' : 'Black'} wins by checkmate`
+              : state.status === 'timeout'
+                ? `${state.winner === 'w' ? 'White' : 'Black'} wins on time`
+                : 'Draw by stalemate'}</strong>
+          <p class="game-note">${state.lastMove ? `Last move: ${getChessSquareName(state.lastMove.fromX, state.lastMove.fromY)} to ${getChessSquareName(state.lastMove.toX, state.lastMove.toY)}.` : 'Tap a piece, then tap a highlighted square to move it.'}</p>
+        </div>
+        <div class="chess-capture-card">
+          <h3>Captured by White</h3>
+          <div class="chess-captured-row">${state.captured.w.length ? state.captured.w.map(renderChessPiece).join('') : '<span class="game-note">None yet.</span>'}</div>
+          <h3>Captured by Black</h3>
+          <div class="chess-captured-row">${state.captured.b.length ? state.captured.b.map(renderChessPiece).join('') : '<span class="game-note">None yet.</span>'}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  refs.gameArea.querySelectorAll('[data-chess-square]').forEach(button => {
+    button.addEventListener('click', () => {
+      const [x, y] = button.dataset.chessSquare.split(':').map(Number);
+      handleChessSquareClick(x, y);
+    });
+  });
+
+  if (state.status === 'checkmate') {
+    setGameMessage(`${state.winner === 'w' ? 'White' : 'Black'} wins by checkmate.`, 'success');
+  } else if (state.status === 'timeout') {
+    setGameMessage(`${state.winner === 'w' ? 'White' : 'Black'} wins on time.`, 'warning');
+  } else if (state.status === 'stalemate') {
+    setGameMessage('Stalemate. No legal moves remain.', 'warning');
+  } else if (state.checkColor) {
+    setGameMessage(`${state.checkColor === 'w' ? 'White' : 'Black'} is in check.`, 'warning');
+  } else {
+    setGameMessage('Tap a piece, then tap one of the highlighted squares.');
+  }
 }
 
 function renderMemory() {
@@ -4562,6 +5920,12 @@ function revealMemoryCard(index) {
     state.firstPick = null;
     state.secondPick = null;
     state.won = state.cards.every(entry => entry.matched);
+    if (state.won) {
+      submitGameScore(state, 'memory', {
+        bestTimeMs: getElapsedSince(state.startedAt),
+        fewestTurns: state.turns
+      });
+    }
     renderActiveGame();
     return;
   }
@@ -4852,6 +6216,9 @@ function runCheckAction() {
     case 'groupSort':
       submitGroupSort();
       break;
+    case 'strands':
+      useStrandsHint();
+      break;
     case 'sudoku':
       checkSudoku();
       break;
@@ -5063,6 +6430,31 @@ function attachGlobalEvents() {
     setCustomStatus('Current data exported as JSON.', 'success');
   });
 
+  refs.exportHighScores.addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(app.highScores, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'puzzle-usb-high-scores.json';
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 0);
+    setCustomStatus('High scores exported as JSON. You can save that file onto the USB drive.', 'success');
+  });
+
+  refs.importHighScoresButton.addEventListener('click', () => {
+    refs.importHighScoresInput.value = '';
+    refs.importHighScoresInput.click();
+  });
+
+  refs.importHighScoresInput.addEventListener('change', event => {
+    const [file] = event.target.files || [];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = loadEvent => importHighScoresFromText(String(loadEvent.target?.result || ''));
+    reader.onerror = () => setCustomStatus('The selected high score file could not be read.', 'danger');
+    reader.readAsText(file);
+  });
+
   window.addEventListener('keydown', event => {
     if (app.currentView !== 'play') return;
     if (isEditingText(event.target)) return;
@@ -5076,6 +6468,7 @@ function attachGlobalEvents() {
 }
 
 function init() {
+  hydrateHighScores();
   refreshCustomEditor();
   attachGlobalEvents();
   renderApp();

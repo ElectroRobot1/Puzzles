@@ -20,7 +20,7 @@
       <div class="hero-side">
         <div class="hero-notes">
           <div class="stat-chip">
-            <strong>18</strong>
+            <strong>20</strong>
             <span>games</span>
           </div>
           <div class="stat-chip">
@@ -63,7 +63,7 @@
           <div class="section-head custom-head">
             <div>
               <h2>Customizer</h2>
-              <p>Edit the built-in data and save it locally in this browser.</p>
+              <p>Edit built-in data and move puzzle settings or high scores between devices.</p>
             </div>
             <button id="close-customizer" type="button" class="secondary-button">Close</button>
           </div>
@@ -71,15 +71,20 @@
             <span>Word lists</span>
             <span>Category packs</span>
             <span>Nonogram grids</span>
+            <span>Strands boards</span>
             <span>Clue rounds</span>
             <span>Arcade settings</span>
+            <span>High score export</span>
           </div>
           <textarea id="custom-data-editor" spellcheck="false" aria-label="Custom data JSON"></textarea>
           <div class="custom-actions">
             <button id="save-custom-data" type="button">Save Custom Data</button>
             <button id="reset-custom-data" type="button" class="secondary-button">Reset Defaults</button>
             <button id="export-custom-data" type="button" class="secondary-button">Export JSON</button>
+            <button id="export-high-scores" type="button" class="secondary-button">Export High Scores</button>
+            <button id="import-high-scores-button" type="button" class="secondary-button">Import High Scores</button>
           </div>
+          <input id="import-high-scores-input" type="file" accept="application/json,.json" class="hidden">
           <div id="custom-data-status" class="custom-status" aria-live="polite"></div>
         </section>
       </main>
